@@ -15,7 +15,7 @@ class Mqtt_Controller:
     def __init__(self):
         # *********************************************************************
         # MQTT Config
-        self.data_channel_ID = os.getenv('detergent_01')
+        self.data_channel_ID = str(os.getenv('detergent_01'))
         MQTT_SERVER = "139.162.104.10"
         MQTT_PORT = 1883
         MQTT_ALIVE = 60
