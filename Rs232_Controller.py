@@ -56,17 +56,17 @@ class Recevier():
     while 1:
         ox = ser.read()
         x = ox.hex()
-        with open('record.txt','a+') as fd:
-            if ox == b'\xfa':
-                now = datetime.now()
-                date_time = now.strftime("%m/%d/%Y,%H:%M:%S")
-                m.publish(date_time,data)
-                data = ''
+        # with open('record.txt','a+') as fd:
+        if ox == b'\xfa':
+            now = datetime.now()
+            date_time = now.strftime("%m/%d/%Y,%H:%M:%S")
+            m.publish(date_time,data)
+            data = ''
                 #fd.write('\r\n')
-                data = f'{x},'
+            data = f'{x},'
                 #fd.write(f'{date_time},{data}')
-            else:
-                data = data+f'{x},'
+         else:
+            data = data+f'{x},'
                 #fd.write(f'{x},')
 
 if __name__ == '__main__':
