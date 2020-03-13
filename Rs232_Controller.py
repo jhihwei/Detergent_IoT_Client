@@ -65,7 +65,7 @@ class Recevier():
                 #fd.write('\r\n')
             data = f'{x},'
                 #fd.write(f'{date_time},{data}')
-         else:
+        else:
             data = data+f'{x},'
                 #fd.write(f'{x},')
 
