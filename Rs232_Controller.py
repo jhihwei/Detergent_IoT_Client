@@ -21,7 +21,7 @@ class Mqtt_Controller:
         MQTT_ALIVE = 60
         self.MQTT_TOPIC_1 = "Sensor/" + self.data_channel_ID + "/Room1"
         # *********************************************************************
-        self.mqtt_client = mqtt.Client()
+        self.mqtt_client = mqtt.Client(self.data_channel_ID, clean_session=False)
         self.mqtt_client.connect(MQTT_SERVER, MQTT_PORT, MQTT_ALIVE)
 
     def start_loop(self):
