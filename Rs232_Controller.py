@@ -4,13 +4,18 @@ from struct import *
 import random
 import json
 from time import sleep
+# Dot ENV 預載模組-----------------------
+from dotenv import load_dotenv
+import os
+load_dotenv()
+# --------------------------------------
 
 
 class Mqtt_Controller:
     def __init__(self):
         # *********************************************************************
         # MQTT Config
-        self.data_channel_ID = "detergent"
+        self.data_channel_ID = os.getenv('detergent_01')
         MQTT_SERVER = "139.162.104.10"
         MQTT_PORT = 1883
         MQTT_ALIVE = 60
@@ -57,12 +62,12 @@ class Recevier():
                 date_time = now.strftime("%m/%d/%Y,%H:%M:%S")
                 m.publish(date_time,data)
                 data = ''
-                fd.write('\r\n')
+                #fd.write('\r\n')
                 data = f'{x},'
-               # fd.write(f'{date_time},{data}')
+                #fd.write(f'{date_time},{data}')
             else:
                 data = data+f'{x},'
-                fd.write(f'{x},')
+                #fd.write(f'{x},')
 
 if __name__ == '__main__':
    Recevier()

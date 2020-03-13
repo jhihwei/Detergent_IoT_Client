@@ -1,2 +1,4 @@
 /win-venv/
 /linux-venv/
+.env
+.venv
