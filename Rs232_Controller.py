@@ -16,13 +16,13 @@ class Mqtt_Controller:
         # *********************************************************************
         # MQTT Config
         self.data_channel_ID = str(os.getenv('CLIENT_ID'))
-        MQTT_SERVER = "139.162.104.10"
-        MQTT_PORT = 1883
-        MQTT_ALIVE = 60
+        self.MQTT_SERVER = "139.162.104.10"
+        self.MQTT_PORT = 1883
+        self.MQTT_ALIVE = 60
         self.MQTT_TOPIC_1 = "Sensor/" + self.data_channel_ID + "/Room1"
         # *********************************************************************
         self.mqtt_client = mqtt.Client(self.data_channel_ID, clean_session=False)
-        self.mqtt_client.connect(MQTT_SERVER, MQTT_PORT, MQTT_ALIVE)
+        # self.mqtt_client.connect(MQTT_SERVER, MQTT_PORT, MQTT_ALIVE)
 
     def start_loop(self):
         while True:
@@ -33,6 +33,7 @@ class Mqtt_Controller:
             sleep(0.7)
             
     def publish(self, datetime:str, msg: str):
+        self.mqtt_client.connect(self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
         payload = { "time":datetime, 'value': msg}
         print(f'Received and Send:{datetime},{msg}')
         self.mqtt_client.publish(self.MQTT_TOPIC_1, json.dumps(payload), 1)
