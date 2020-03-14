@@ -33,12 +33,10 @@ class Mqtt_Controller:
             t0 = random.randint(0, 30)
             payload = {
                 "data_channel_ID": f'{self.data_channel_ID}_{random.randint(1, 1000)}', "value": t0}
-            print("flag:", self.flag_connected)
             if self.flag_connected == 1:
-                print(f'sensor : {t0}')
-                self.mqtt_client.publish(self.MQTT_TOPIC_1, json.dumps(payload), 0)
-                with open('start_loop_log.txt', 'a+') as fd:
-                    fd.write(json.dumps(payload))
+                now = datetime.now()
+                now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                self.publish(now, f'sensor : {t0}')
             sleep(1)
 
     def publish(self, datetime: str, msg: str):
@@ -63,14 +61,13 @@ class Mqtt_Controller:
                 with open('mqtt_log.txt', 'a+') as fd:
                     fd.write("Try to Connect to MQTT")
             except:
-                pass
+                self.flag_connected = 0
 import time
 import serial
 class Recevier():
     def __init__(self):
         self.ser = serial.Serial(
-            port='/dev/ttyS0',
-            # port=str(os.getenv('SERIAL_PORT')),
+            port=str(os.getenv('SERIAL_PORT')),
             baudrate=9600,
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
@@ -86,19 +83,21 @@ class Recevier():
             # with open('record.txt','a+') as fd:
             if ox == b'\xfa':
                 now = datetime.now()
-                date_time = now.strftime("%m/%d/%Y,%H:%M:%S")
-                self.m.publish(date_time, data)
+                now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                self.m.publish(now, data)
                 data = ''
                 # fd.write('\r\n')
                 data = f'{x},'
-                # fd.write(f'{date_time},{data}')
+                # fd.write(f'{now},{data}')
             else:
                 data = data+f'{x},'
                 # fd.write(f'{x},')
 
 
 if __name__ == '__main__':
-    r = Recevier()
-    r.start()
-    # m = Mqtt_Controller()
-    # m.start_loop()
+    if str(os.getenv('CLIENT_TYPE')) == 'local' :
+        r = Recevier()
+        r.start()
+    else:
+        m = Mqtt_Controller()
+        m.start_loop()
