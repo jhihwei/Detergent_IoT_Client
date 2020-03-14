@@ -69,8 +69,8 @@ import serial
 class Recevier():
     def __init__(self):
         self.ser = serial.Serial(
-            # port='/dev/ttyS0',
-            port=str(os.getenv('SERIAL_PORT')),
+            port='/dev/ttyS0',
+            # port=str(os.getenv('SERIAL_PORT')),
             baudrate=9600,
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
