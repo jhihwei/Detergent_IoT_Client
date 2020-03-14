@@ -42,7 +42,6 @@ class Mqtt_Controller:
     def publish(self, datetime: str, msg: str):
         # self.mqtt_client.connect(
         #     self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
-        time.sleep(3)
         print("flag:", self.flag_connected)
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg}
