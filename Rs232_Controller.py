@@ -26,6 +26,7 @@ class Mqtt_Controller:
         self.mqtt_client.on_disconnect = self.on_disconnect
         self.mqtt_client.connect(
             self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
+        self.mqtt_client.loop(timeout=1.0)
 
     def start_loop(self):
         print('Start Loop...')
@@ -40,8 +41,8 @@ class Mqtt_Controller:
             sleep(1)
 
     def publish(self, datetime: str, msg: str):
-        self.mqtt_client.connect(
-            self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
+        # self.mqtt_client.connect(
+        #     self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
         print("flag:", self.flag_connected)
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg}
