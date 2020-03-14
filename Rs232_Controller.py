@@ -46,7 +46,7 @@ class Mqtt_Controller:
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg}
             print(f'Received and Send:{datetime},{msg}')
-            self.mqtt_client.publish(self.MQTT_TOPIC_1, json.dumps(payload), 1)
+            self.mqtt_client.publish(self.MQTT_TOPIC_1, json.dumps(payload), 0)
 
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False
