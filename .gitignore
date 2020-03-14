@@ -2,3 +2,5 @@
 /linux-venv/
 .env
 .venv
+start_loop_log.txt
+mqtt_log.txt
