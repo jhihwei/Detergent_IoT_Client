@@ -13,7 +13,7 @@ class Mqtt_Controller:
     def __init__(self):
         # *********************************************************************
         # Global
-        self.flag_connected = 1
+        self.flag_connected = True
         # MQTT Config
         self.data_channel_ID = str(os.getenv('CLIENT_ID'))
         self.MQTT_SERVER = "139.162.104.10"
@@ -49,19 +49,19 @@ class Mqtt_Controller:
             self.mqtt_client.publish(self.MQTT_TOPIC_1, json.dumps(payload), 1)
 
     def on_disconnect(self, client, userdata, rc):
-        self.flag_connected = 0
+        self.flag_connected = False
         print("MQTT is Disconnect")
-        while self.flag_connected == 0:
+        while self.flag_connected:
             time.sleep(3)
             try:
                 print("Try to Connect...", self.flag_connected)
                 self.mqtt_client.connect(
                     self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
-                self.flag_connected = 1
+                self.flag_connected = True
                 with open('mqtt_log.txt', 'a+') as fd:
                     fd.write("Try to Connect to MQTT")
             except:
-                self.flag_connected = 0
+                self.flag_connected = False
 import time
 import serial
 class Recevier():
