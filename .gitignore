@@ -1,5 +1,6 @@
 /win-venv/
 /linux-venv/
+/log/
 .env
 .venv
 start_loop_log.txt

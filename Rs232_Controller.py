@@ -1,19 +1,21 @@
 # Dot ENV 預載模組-----------------------
+from time import sleep
+import json
+import random
+from struct import *
+from datetime import datetime
+import paho.mqtt.client as mqtt
 from dotenv import load_dotenv
 import os
 load_dotenv()
 # --------------------------------------
-import paho.mqtt.client as mqtt
-from datetime import datetime
-from struct import *
-import random
-import json
-from time import sleep
+
+
 class Mqtt_Controller:
     def __init__(self):
         # *********************************************************************
         # Global
-        self.flag_connected = True
+        self.flag_connected = False
         # MQTT Config
         self.data_channel_ID = str(os.getenv('CLIENT_ID'))
         self.MQTT_SERVER = "139.162.104.10"
@@ -24,9 +26,12 @@ class Mqtt_Controller:
         self.mqtt_client = mqtt.Client(
             self.data_channel_ID, clean_session=False)
         self.mqtt_client.on_disconnect = self.on_disconnect
-        self.mqtt_client.connect(
+        try:
+            self.mqtt_client.connect(
             self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
-        self.mqtt_client.loop(timeout=1.0)
+            self.flag_connected = True
+        except Exception as e:
+            self.mqtt_reconnect()
 
     def start_loop(self):
         print('Start Loop...')
@@ -41,28 +46,34 @@ class Mqtt_Controller:
             sleep(1)
 
     def publish(self, datetime: str, msg: str):
-        # self.mqtt_client.connect(
-        #     self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
         print("flag:", self.flag_connected)
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg}
             print(f'Received and Send:{datetime},{msg}')
-            self.mqtt_client.publish(self.MQTT_TOPIC_1, json.dumps(payload), 0)
+            print(json.dumps(payload))
+            self.mqtt_client.publish(
+                self.MQTT_TOPIC_1, json.dumps(payload), 0)
 
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False
         print("MQTT is Disconnect")
-        while self.flag_connected:
+        self.mqtt_reconnect()
+
+    def mqtt_reconnect(self):
+        while not self.flag_connected:
             time.sleep(3)
             try:
-                print("Try to Connect...", self.flag_connected)
+                print("Try to Connect...")
                 self.mqtt_client.connect(
                     self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
                 self.flag_connected = True
-                with open('mqtt_log.txt', 'a+') as fd:
-                    fd.write("Try to Connect to MQTT")
-            except:
+                print("MQTT is Connected")
+            except Exception as e:
                 self.flag_connected = False
+                with open('log/mqtt_connect_except_log.txt','a+', encoding='utf-8') as f:
+                    now = datetime.now()
+                    now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                    f.write(f'{now}:{str(e)}\n')
 import time
 import serial
 class Recevier():
