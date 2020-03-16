@@ -64,16 +64,21 @@ class Mqtt_Controller:
             time.sleep(3)
             try:
                 print("Try to Connect...")
+                self.write_log('log/mqtt_connect_log.txt', '連線中斷並嘗試連線')
                 self.mqtt_client.connect(
                     self.MQTT_SERVER, self.MQTT_PORT, self.MQTT_ALIVE)
                 self.flag_connected = True
                 print("MQTT is Connected")
+                self.write_log('log/mqtt_connect_log.txt', '連線成功')
             except Exception as e:
                 self.flag_connected = False
-                with open('log/mqtt_connect_except_log.txt','a+', encoding='utf-8') as f:
-                    now = datetime.now()
-                    now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                    f.write(f'{now}:{str(e)}\n')
+                self.write_log('log/mqtt_connect_except_log.txt', str(e))
+
+    def write_log(self, path:str, log:str):
+        with open(path,'a+', encoding='utf-8') as f:
+            now = datetime.now()
+            now = now.strftime("%m/%d/%Y,%H:%M:%S")
+            f.write(f'{now}:{log}\n')
 import time
 import serial
 class Recevier():
