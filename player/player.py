@@ -16,7 +16,7 @@ player.set_playback_mode(vlc.PlaybackMode.loop)
 system_path = os.path.dirname(os.path.abspath(__file__))
 @app.route("/play")
 def play():
-    test_videos_path = system_path+'test_videos/'
+    test_videos_path = system_path+'/test_videos/'
     files = os.listdir(test_videos_path)
     media_list = instance.media_list_new()
     for f in files:
