@@ -1,8 +1,8 @@
 /win-venv/
 /linux-venv/
-RS232/log/*.*
+RS232/log/*.txt
 player/test_videos/*.*
-player/log/*.*
+player/log/*.txt
 .env
 .venv
 start_loop_log.txt
