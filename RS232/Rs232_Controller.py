@@ -16,6 +16,8 @@ class Mqtt_Controller:
         # *********************************************************************
         # Global
         self.flag_connected = False
+        # Current Path
+        self.system_path = os.path.dirname(os.path.abspath(__file__))
         # MQTT Config
         self.data_channel_ID = str(os.getenv('CLIENT_ID'))
         self.MQTT_SERVER = "139.162.104.10"
@@ -75,7 +77,7 @@ class Mqtt_Controller:
                 self.write_log('log/mqtt_connect_except_log.txt', str(e))
 
     def write_log(self, path:str, log:str):
-        with open(path,'a+', encoding='utf-8') as f:
+        with open(f'{self.system_path}/{path}','a+', encoding='utf-8') as f:
             now = datetime.now()
             now = now.strftime("%m/%d/%Y,%H:%M:%S")
             f.write(f'{now}:{log}\n')
