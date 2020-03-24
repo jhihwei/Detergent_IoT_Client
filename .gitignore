@@ -1,6 +1,7 @@
 /win-venv/
 /linux-venv/
 /log/
+/test_videos/*.*
 .env
 .venv
 start_loop_log.txt
