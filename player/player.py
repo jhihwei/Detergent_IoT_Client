@@ -3,7 +3,7 @@ import pafy
 import vlc
 from gevent.pywsgi import WSGIServer
 import os
-
+from pyautogui import press
 app = FlaskAPI(__name__)
 
 instance = vlc.Instance('--input-repeat=-1', '--fullscreen')
@@ -25,7 +25,7 @@ def play():
 
     player.set_media_list(media_list)
     player.play()
-
+    press('capslock')
     return str(media_list.count()) + " Video has been added to list"
 
 
