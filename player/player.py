@@ -6,7 +6,7 @@ import os
 import pyautogui
 app = FlaskAPI(__name__)
 
-instance = vlc.Instance('--input-repeat=-1', '--fullscreen')
+instance = vlc.Instance('--input-repeat=-1', '--fullscreen', '--video-on-top')
 
 # Define VLC player
 player = instance.media_list_player_new()
@@ -25,7 +25,7 @@ def play():
 
     player.set_media_list(media_list)
     player.play()
-    pyautogui.moveTo(100, 200)
+    # pyautogui.moveTo(100, 200)
     return str(media_list.count()) + " Video has been added to list"
 
 
