@@ -27,6 +27,7 @@
     [Install]
     WantedBy=multi-user.target
     ```
+    >player2(選用)
 * RS232_Controller
     ```sh
     /etc/systemd/system/RS232_Controller.service
