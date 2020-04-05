@@ -1,5 +1,6 @@
 # 洗衣精販售機IoT-Client
 ## Install
+0. 啟用Serial Port
 1. 安裝xscreensaver：
     ```sh
     sudo apt-get install xscreensaver
