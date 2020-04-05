@@ -6,7 +6,7 @@ import os
 
 app = FlaskAPI(__name__)
 
-instance = vlc.Instance('--input-repeat=-1', '--fullscreen')
+instance = vlc.Instance('--input-repeat=-1', '--fullscreen', '--video-on-top')
 
 # Define VLC player
 player = instance.media_list_player_new()
