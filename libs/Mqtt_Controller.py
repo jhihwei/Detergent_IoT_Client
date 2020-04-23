@@ -18,7 +18,7 @@ class Mqtt_Controller:
         self.MQTT_SERVER = "139.162.104.10"
         self.MQTT_PORT = 1883
         self.MQTT_ALIVE = 60
-        self.MQTT_TOPIC_1 = "command/" + self.data_channel_ID
+        self.MQTT_TOPIC_1 = f"Sensor/{self.data_channel_ID}/Room1"
         # *********************************************************************
         self.mqtt_client = mqtt.Client(
             self.data_channel_ID, clean_session=False)
