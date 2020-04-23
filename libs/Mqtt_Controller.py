@@ -2,6 +2,9 @@ import paho.mqtt.client as mqtt
 import os
 from datetime import datetime
 import time
+import json
+import random
+from time import sleep
 
 class Mqtt_Controller:
     def __init__(self):
@@ -52,3 +55,23 @@ class Mqtt_Controller:
             now = datetime.now()
             now = now.strftime("%m/%d/%Y,%H:%M:%S")
             f.write(f'{now}:{log}\n')
+    def start_loop(self):
+        print('Start Loop...')
+        while True:
+            t0 = random.randint(0, 30)
+            payload = {
+                "data_channel_ID": f'{self.data_channel_ID}_{random.randint(1, 1000)}', "value": t0}
+            if self.flag_connected == 1:
+                now = datetime.now()
+                now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                self.publish(now, f'sensor : {t0}')
+            sleep(1)
+
+    def publish(self, datetime: str, msg: str):
+        print("flag:", self.flag_connected)
+        if self.flag_connected:
+            payload = {"time": datetime, 'value': msg}
+            print(f'Received and Send:{datetime},{msg}')
+            print(json.dumps(payload))
+            self.mqtt_client.publish(
+                self.MQTT_TOPIC_1, json.dumps(payload), 0)

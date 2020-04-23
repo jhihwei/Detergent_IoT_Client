@@ -1,5 +1,4 @@
 import subprocess
-# subprocess.run(["omxplayer","-o", "hdmi", "1.mp4"])
 import os
 
 
@@ -11,7 +10,6 @@ class Player2:
         print()
 
     def play(self):
-        videos_path = "/home/pi/Detergent_IoT_Client/player/test_videos"
         files = os.listdir(self.videos_path)
         for f in files:
             f = f'{self.videos_path}/{f}'
