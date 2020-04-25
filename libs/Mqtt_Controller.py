@@ -30,6 +30,10 @@ class Mqtt_Controller:
             print('MQTT is connected')
         except Exception as e:
             self.mqtt_reconnect()
+            
+    def set_TOPIC(self, topic:str):
+        self.MQTT_TOPIC_1 = topic
+
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False
         print("MQTT is Disconnect")

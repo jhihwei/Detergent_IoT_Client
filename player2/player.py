@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 class Player2:
     def __init__(self):
-        load_dotenv(dotenv_path="/home/pi/Detergent_IoT_Client/")
+        load_dotenv(dotenv_path="/home/pi/Detergent_IoT_Client/.env")
         self._PLAYER = str(os.getenv('PLAYER'))
         self.system_path = os.path.dirname(os.path.abspath(__file__))
         self.videos_path = os.path.join(
