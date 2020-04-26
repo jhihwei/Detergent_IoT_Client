@@ -37,3 +37,4 @@ class Monitor:
 if __name__ == "__main__":
     monitor = Monitor()
     monitor.take_screenshot()
+    monitor.convert_img_to_base64('output.jpg')
