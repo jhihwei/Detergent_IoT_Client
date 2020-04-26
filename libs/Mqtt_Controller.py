@@ -21,7 +21,7 @@ class Mqtt_Controller:
         self.MQTT_TOPIC_1 = f"Sensor/{self.data_channel_ID}/Room1"
         # *********************************************************************
         self.mqtt_client = mqtt.Client(
-            f'{self.data_channel_ID}_{random.randint(1, 1000)}', clean_session=False, maximum_packet_size=1000000)
+            f'{self.data_channel_ID}_{random.randint(1, 1000)}', clean_session=False)
         self.mqtt_client.on_disconnect = self.on_disconnect
         try:
             self.mqtt_client.connect(
