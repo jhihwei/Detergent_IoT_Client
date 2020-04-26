@@ -16,6 +16,7 @@ load_dotenv(dotenv_path="/home/pi/Detergent_IoT_Client/.env")
 import subprocess
 import cv2
 import base64
+from time import sleep
 from Mqtt_Controller import Mqtt_Controller
 class Monitor:
     def __init__(self):
@@ -39,12 +40,14 @@ class Monitor:
             return img_base64.decode('utf-8')
 
 if __name__ == "__main__":
-    monitor = Monitor()
-    monitor.take_screenshot()
-    img_base64 = monitor.convert_img_to_base64('output.jpg')
-    m = Mqtt_Controller()
-    m.set_TOPIC('screenshot')
-    now = datetime.now()
-    now = now.strftime("%m/%d/%Y,%H:%M:%S")
-    m.publish(now, img_base64, 'screenshot')
+    while True:
+        monitor = Monitor()
+        monitor.take_screenshot()
+        img_base64 = monitor.convert_img_to_base64('output.jpg')
+        m = Mqtt_Controller()
+        m.set_TOPIC('screenshot')
+        now = datetime.now()
+        now = now.strftime("%m/%d/%Y,%H:%M:%S")
+        m.publish(now, img_base64, 'screenshot')
+        time.sleep(3)
     # print(m.get_TOPIC())
