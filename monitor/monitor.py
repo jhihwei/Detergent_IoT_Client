@@ -26,12 +26,12 @@ class Monitor:
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
         # resize img and save it
-        ratio = 240
+        ratio = 180
         h_ratio = h/ratio
         h = int(h/h_ratio)
         w = int(w/h_ratio)
         img = cv2.resize(img, (w, h), interpolation=cv2.INTER_CUBIC)
-        cv2.imwrite('output.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 30])
+        cv2.imwrite('output.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 20])
 
     def convert_img_to_base64(self, image_path:str):
         with open(f'{image_path}', "rb") as img_file:
