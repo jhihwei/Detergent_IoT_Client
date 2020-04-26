@@ -32,7 +32,7 @@ class Mqtt_Controller:
             self.mqtt_reconnect()
             
     def set_TOPIC(self, topic:str):
-        self.MQTT_TOPIC_1 = f'{topic}_{self.data_channel_ID}'
+        self.MQTT_TOPIC_1 = f'{topic}/{self.data_channel_ID}'
 
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False
