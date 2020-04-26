@@ -22,9 +22,11 @@ class Monitor:
         subprocess.run(["raspi2png"])
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
-        h = 320
-        ratio = h/400
-        img = cv2.resize(img, (int(w/ratio), h), interpolation=cv2.INTER_CUBIC)
+        ratio = 320
+        h_ratio = h/ratio
+        h = int(h/h_ratio)
+        w = int(w/h_ratio)
+        img = cv2.resize(img, (w, h), interpolation=cv2.INTER_CUBIC)
         cv2.imwrite('output.jpg', img)
 if __name__ == "__main__":
     monitor = Monitor()
