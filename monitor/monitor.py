@@ -33,7 +33,7 @@ class Monitor:
     def convert_img_to_base64(self, image_path:str):
         with open(f'{image_path}', "rb") as img_file:
             img_base64 = base64.b64encode(img_file.read())
-            print(str(img_base64))
+            print(img_base64.decode('utf-8'))
 if __name__ == "__main__":
     monitor = Monitor()
     monitor.take_screenshot()
