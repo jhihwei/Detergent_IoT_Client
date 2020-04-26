@@ -19,7 +19,7 @@ class Monitor:
     def __init__(self):
         pass
     def take_screenshot(self):
-        subprocess.run(["raspi2png "])
+        subprocess.run(["raspi2png"])
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
         ratio = h/400
