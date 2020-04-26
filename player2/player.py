@@ -16,7 +16,7 @@ class Player2:
         for f in files:
             f = f'{self.videos_path}/{f}'
             if self._PLAYER == "vlc":
-                subprocess.run(["vlc", "--fullscreen", "vlc://quit", f])
+                subprocess.run(["vlc", "--fullscreen", f, "vlc://quit"])
             else:
                 subprocess.run(["omxplayer", "-o", "hdmi", f])
 
