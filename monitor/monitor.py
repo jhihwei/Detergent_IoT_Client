@@ -44,4 +44,5 @@ if __name__ == "__main__":
     img_base64 = monitor.convert_img_to_base64('output.jpg')
     m = Mqtt_Controller()
     m.set_TOPIC('screenshot')
+    m.publish(img_base64)
     print(m.get_TOPIC())
