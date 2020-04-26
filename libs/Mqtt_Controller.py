@@ -33,7 +33,7 @@ class Mqtt_Controller:
             
     def set_TOPIC(self, topic:str):
         self.MQTT_TOPIC_1 = f'{topic}/{self.data_channel_ID}'
-        
+
     def get_TOPIC(self):
         return self.MQTT_TOPIC_1
 
@@ -79,6 +79,6 @@ class Mqtt_Controller:
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg}
             print(f'Received and Send:{datetime},{msg}')
-            print(json.dumps(payload))
+            # print(json.dumps(payload))
             self.mqtt_client.publish(
                 self.MQTT_TOPIC_1, json.dumps(payload), 0)
