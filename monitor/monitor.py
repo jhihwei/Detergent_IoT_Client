@@ -47,4 +47,4 @@ if __name__ == "__main__":
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
     m.publish(now, img_base64)
-    print(m.get_TOPIC())
+    # print(m.get_TOPIC())
