@@ -31,7 +31,7 @@ class Monitor:
         h = int(h/h_ratio)
         w = int(w/h_ratio)
         img = cv2.resize(img, (w, h), interpolation=cv2.INTER_CUBIC)
-        cv2.imwrite('output.jpg', img, [cv.IMWRITE_JPEG_QUALITY, 50])
+        cv2.imwrite('output.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 50])
 
     def convert_img_to_base64(self, image_path:str):
         with open(f'{image_path}', "rb") as img_file:
