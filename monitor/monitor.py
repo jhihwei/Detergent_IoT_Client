@@ -46,5 +46,5 @@ if __name__ == "__main__":
     m.set_TOPIC('screenshot')
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
-    m.publish(now, img_base64)
+    m.publish(now, img_base64, 'screenshot')
     # print(m.get_TOPIC())
