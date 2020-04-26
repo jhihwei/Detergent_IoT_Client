@@ -23,7 +23,7 @@ class Monitor:
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
         ratio = h/400
-        img = cv2.resize(img, (400, w/ratio), interpolation=cv2.INTER_CUBIC)
+        img = cv2.resize(img, (400, int(w/ratio)), interpolation=cv2.INTER_CUBIC)
         cv2.imwrite('output.jpg', img)
 if __name__ == "__main__":
     monitor = Monitor()

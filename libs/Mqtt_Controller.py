@@ -21,7 +21,7 @@ class Mqtt_Controller:
         self.MQTT_TOPIC_1 = f"Sensor/{self.data_channel_ID}/Room1"
         # *********************************************************************
         self.mqtt_client = mqtt.Client(
-            self.data_channel_ID, clean_session=False)
+            f'{self.data_channel_ID}_{random.randint(1, 1000)}', clean_session=False)
         self.mqtt_client.on_disconnect = self.on_disconnect
         try:
             self.mqtt_client.connect(
@@ -32,7 +32,7 @@ class Mqtt_Controller:
             self.mqtt_reconnect()
             
     def set_TOPIC(self, topic:str):
-        self.MQTT_TOPIC_1 = topic
+        self.MQTT_TOPIC_1 = f'{topic}_{self.data_channel_ID}'
 
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False

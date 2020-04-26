@@ -8,6 +8,7 @@
 2. 安裝相關套件：
     ```sh
     pip3 install -r requirements.txt
+    sudo apt install python3-opencv
     ```
 3. 建立Unit File：
 * player
