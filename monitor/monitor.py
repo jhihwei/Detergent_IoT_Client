@@ -20,7 +20,8 @@ from time import sleep
 from Mqtt_Controller import Mqtt_Controller
 class Monitor:
     def __init__(self):
-        pass
+        self.m = Mqtt_Controller()
+        self.m.set_TOPIC('screenshot')
 
     def take_screenshot(self):
         subprocess.run(["raspi2png", "-w", "320"])
@@ -40,14 +41,13 @@ class Monitor:
             return img_base64.decode('utf-8')
 
 if __name__ == "__main__":
+    monitor = Monitor()
     while True:
-        monitor = Monitor()
         monitor.take_screenshot()
         img_base64 = monitor.convert_img_to_base64('output.jpg')
-        m = Mqtt_Controller()
-        m.set_TOPIC('screenshot')
+        self.m.set_TOPIC('screenshot')
         now = datetime.now()
         now = now.strftime("%m/%d/%Y,%H:%M:%S")
-        m.publish(now, img_base64, 'screenshot')
+        self.m.publish(now, img_base64, 'screenshot')
         sleep(3)
     # print(m.get_TOPIC())
