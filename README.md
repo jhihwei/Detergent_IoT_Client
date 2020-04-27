@@ -46,4 +46,20 @@
     [Install]
     WantedBy=multi-user.target
     ```
-4. 啟動Service
+* Screen Monitor
+  ```sh
+  [Unit]
+    Description=Screen Monitor
+
+    [Service]
+    User=pi
+    WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+    ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/monitor.py
+    Type=simple
+    RemainAfterExit=yes
+
+    [Install]
+    WantedBy=multi-user.target
+
+  ```
+1. 啟動Service
