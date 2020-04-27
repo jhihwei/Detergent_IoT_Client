@@ -23,7 +23,7 @@ class Monitor:
         pass
 
     def take_screenshot(self):
-        subprocess.run(["raspi2png", "--width 320"])
+        subprocess.run(["raspi2png", "-w", "320"])
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
         # resize img and save it
