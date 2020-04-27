@@ -27,7 +27,7 @@ class Monitor:
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
         # resize img and save it
-        ratio = 180
+        ratio = 240
         h_ratio = h/ratio
         h = int(h/h_ratio)
         w = int(w/h_ratio)
