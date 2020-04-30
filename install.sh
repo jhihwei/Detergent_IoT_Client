@@ -14,3 +14,5 @@ sudo echo -e "[Unit]
   RemainAfterExit=yes \n
   [Install] \n
   WantedBy=multi-user.target" >> /etc/systemd/system/test.service 
+sudo systemctl enable test.service
+sudo systemctl restart test.service
