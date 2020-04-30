@@ -52,17 +52,34 @@
     ```
   ```sh
   [Unit]
-    Description=Screen Monitor
+  Description=Screen Monitor
 
-    [Service]
-    User=pi
-    WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
-    ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/monitor.py
-    Type=simple
-    RemainAfterExit=yes
+  [Service]
+  User=pi
+  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+  ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/monitor.py
+  Type=simple
+  RemainAfterExit=yes
 
-    [Install]
-    WantedBy=multi-user.target
+  [Install]
+  WantedBy=multi-user.target
 
   ```
+* Auto Key
+  ```sh
+  /etc/systemd/system/Auto_key.service
+  ```
+  ```sh
+  [Unit]
+  Description=Auto Key
+
+  [Service]
+  User=root
+  ExecStart=sudo /usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/keyboard.py
+  Type=simple
+  RemainAfterExit=yes
+
+  [Install]
+  WantedBy=multi-user.target
+```
 1. 啟動Service
