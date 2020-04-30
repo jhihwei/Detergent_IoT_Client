@@ -47,6 +47,9 @@
     WantedBy=multi-user.target
     ```
 * Screen Monitor
+    ```sh
+    /etc/systemd/system/Screen_Monitor.service
+    ```
   ```sh
   [Unit]
     Description=Screen Monitor
