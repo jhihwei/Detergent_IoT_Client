@@ -62,4 +62,6 @@ sudo echo -e
   Type=simple
   RemainAfterExit=yes
   [Install]
-  WantedBy=multi-user.target"
+  WantedBy=multi-user.target" >>   /etc/systemd/system/Auto_key.service
+sudo systemctl enable Auto_key.service
+sudo systemctl restart Auto_key.service
