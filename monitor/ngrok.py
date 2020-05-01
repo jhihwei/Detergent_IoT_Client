@@ -35,4 +35,4 @@ def get_url(client, userdata, message):
             print("keep move")
 
 m.mqtt_client.on_message=get_url
-m.mqtt_client.loop_forever
+m.mqtt_client.loop_forever()
