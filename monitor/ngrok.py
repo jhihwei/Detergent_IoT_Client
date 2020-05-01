@@ -19,9 +19,12 @@ from time import sleep
 while True:
     try:
         with open('ngrok.log', 'r', encoding="utf-8") as f:
-            sleep(10)
+            tunnel = ""
+            sleep(3)
             rs = f.readlines()
             for r in rs:
-                print(r)
+                if(r.index("tunnel")!=-1):
+                    tunnel = r
+            print(tunnel)
     except FileNotFoundError:
         pass
