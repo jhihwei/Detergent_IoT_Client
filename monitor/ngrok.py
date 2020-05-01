@@ -1,4 +1,7 @@
 # Dot ENV 預載模組-----------------------
+from time import sleep
+from Mqtt_Controller import Mqtt_Controller
+import sys
 from struct import *
 from datetime import datetime
 import paho.mqtt.client as mqtt
@@ -7,14 +10,11 @@ import os
 load_dotenv()
 # --------------------------------------
 # 增加系統路徑---------------------------
-import sys
 dir_path = os.path.dirname(os.path.realpath(__file__))
 parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
 libs_dir_path = parent_dir_path+'/libs'
 sys.path.insert(0, libs_dir_path)
 # --------------------------------------
-from Mqtt_Controller import Mqtt_Controller
-from time import sleep
 
 while True:
     try:
@@ -23,7 +23,7 @@ while True:
             sleep(3)
             rs = f.readlines()
             for r in rs:
-                if(r.index("tunnel")!=-1):
+                if(r.index("tunnel")):
                     tunnel = r
             print(tunnel)
     except FileNotFoundError:
