@@ -1,4 +1,5 @@
 # 增加系統路徑---------------------------
+import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
 libs_dir_path = parent_dir_path+'/libs'
@@ -11,7 +12,6 @@ import sys
 from struct import *
 from datetime import datetime
 from dotenv import load_dotenv
-import os
 load_dotenv()
 # --------------------------------------
 
