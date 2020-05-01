@@ -1,4 +1,5 @@
 # Dot ENV 預載模組-----------------------
+from Mqtt_Controller import Mqtt_Controller
 from time import sleep
 import sys
 from struct import *
@@ -12,16 +13,16 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 parent_dir_path = os.path.abspath(os.path.join(dir_path, os.pardir))
 libs_dir_path = parent_dir_path+'/libs'
 sys.path.insert(0, libs_dir_path)
-from Mqtt_Controller import Mqtt_Controller
 # --------------------------------------
 
 m = Mqtt_Controller()
-m.set_TOPIC('url')
+m.set_TOPIC('ngrok')
 m.subscribe('ngrok')
 
+
 def get_url(client, userdata, message):
-    print("message received " ,str(message.payload.decode("utf-8")))
-    while False:
+    message = str(message.payload.decode("utf-8"))
+    if(message == "get"):         
         try:
             with open('ngrok.log', 'r', encoding="utf-8") as f:
                 tunnel = "keep move"
@@ -30,9 +31,11 @@ def get_url(client, userdata, message):
                 for r in rs:
                     if(r.find('started tunnel') > 0):
                         tunnel = r
-                print(tunnel)
+                now = datetime.now()
+                now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                m.publish(now, tunnel)
         except:
             print("keep move")
 
-m.mqtt_client.on_message=get_url
+m.mqtt_client.on_message = get_url
 m.mqtt_client.loop_forever()
