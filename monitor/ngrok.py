@@ -16,16 +16,20 @@ from Mqtt_Controller import Mqtt_Controller
 # --------------------------------------
 
 m = Mqtt_Controller()
-m.set_TOPIC('ngrok')
-while True:
-    try:
-        with open('ngrok.log', 'r', encoding="utf-8") as f:
-            tunnel = "keep move"
-            sleep(3)
-            rs = f.readlines()
-            for r in rs:
-                if(r.find('started tunnel') > 0):
-                    tunnel = r
-            print(tunnel)
-    except:
-        print("keep move")
+m.set_TOPIC('url')
+m.subscribe('ngrok')
+m.on_message(get_url(client, userdata, msg))
+
+def get_url(client, userdata, msg):
+    while True:
+        try:
+            with open('ngrok.log', 'r', encoding="utf-8") as f:
+                tunnel = "keep move"
+                sleep(3)
+                rs = f.readlines()
+                for r in rs:
+                    if(r.find('started tunnel') > 0):
+                        tunnel = r
+                print(tunnel)
+        except:
+            print("keep move")
