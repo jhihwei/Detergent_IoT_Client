@@ -22,8 +22,9 @@ while True:
             sleep(3)
             rs = f.readlines()
             for r in rs:
-                if(r.index("tunnel")):
-                    tunnel = r
-            print(tunnel)
+                print(r)
+                # if(r.index("tunnel")):
+                #     tunnel = r
+            # print(tunnel)
     except:
         print("keep move")
