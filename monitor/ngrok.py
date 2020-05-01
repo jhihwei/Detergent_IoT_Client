@@ -19,7 +19,6 @@ m = Mqtt_Controller()
 m.set_TOPIC('ngrok')
 m.subscribe('ngrok')
 
-
 def get_url(client, userdata, message):
     message = str(message.payload.decode("utf-8"))
     if(message == "get"):         
