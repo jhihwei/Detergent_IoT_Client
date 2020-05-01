@@ -14,7 +14,7 @@ libs_dir_path = parent_dir_path+'/libs'
 sys.path.insert(0, libs_dir_path)
 # --------------------------------------
 from Mqtt_Controller import Mqtt_Controller
-import time
+from time import sleep
 
 while True:
     with open('ngrok.log', 'r', encoding="utf-8") as f:
