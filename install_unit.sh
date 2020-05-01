@@ -72,7 +72,7 @@ sudo echo -e "[Unit]
   [Service]
   User=pi
   WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
-  ExecStart=/opt/ngrok/ngrok --log ngrok.log tcp 22
+  ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/ngrok.py
   Type=simple
   Restart=always
   RestartSec=1min
