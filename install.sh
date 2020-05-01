@@ -1,18 +1,89 @@
-sudo apt-get install -y libatlas-base-dev
-sudo apt-get install -y libjasper-dev
-sudo apt-get install -y libqtgui4
-sudo apt-get install -y python3-pyqt5
-sudo apt install -y libqt4-test
-sudo apt install -y python3-opencv
-sudo apt install -y libgstreamer1.0-0
-sudo apt install -y --reinstall python3-pip
-pip3 install --upgrade pip
-curl -sL https://raw.githubusercontent.com/AndrewFromMelbourne/raspi2png/master/installer.sh | bash -
 
-git clone https://github.com/jhihwei/Detergent_IoT_Client.git
+sudo echo -e "[Unit]
+    Description=Video Player
+    [Service]
+    User=pi
+    ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/player2/player.py
+    Type=simple
+    Restart=always
+    RestartSec=1min
+    [Install]
+    WantedBy=multi-user.target" >> /etc/systemd/system/player.service
+sudo systemctl enable player.service
+sudo systemctl restart player.service
 
-mkdir ~/Detergent_IoT_Client/player/test_videos
+sudo echo -e "[Unit]
+    Description=RS232 Controller
+    [Service]
+    User=pi
+    ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/RS232/Rs232_Controller.py
+    Type=simple
+    Restart=always
+    RestartSec=1min
+    [Install]
+    WantedBy=multi-user.target" >> /etc/systemd/system/RS232_Controller.service
+sudo systemctl enable RS232_Controller.service
+sudo systemctl restart RS232_Controller.service
 
-cd ~/Detergent_IoT_Client
+sudo echo -e "[Unit]
+  Description=Screen Monitor
+  [Service]
+  User=pi
+  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+  ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/monitor.py
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >> /etc/systemd/system/Screen_Monitor.service
+sudo systemctl enable Screen_Monitor.service
+sudo systemctl restart Screen_Monitor.service
 
-pip3 install -r requirements.txt
+sudo echo -e "[Unit]
+  Description=Auto Key
+  [Service]
+  User=root
+  ExecStart=sudo /usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/keyboard.py
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >>   /etc/systemd/system/Auto_key.service
+sudo systemctl enable Auto_key.service
+sudo systemctl restart Auto_key.service
+
+sudo mkdir /opt/ngrok
+cd /opt/ngrok
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+unzip ngrok-stable-linux-arm.zip
+rm ngrok-stable-linux-arm.zip
+chmod +x ngrok
+
+sudo echo -e "[Unit]
+  Description=Ngrok
+  [Service]
+  User=root
+  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+  ExecStart=/opt/ngrok/ngrok tcp 22 --log ngrok.log
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >>   /etc/systemd/system/Ngrok.service
+sudo systemctl enable Ngrok.service
+sudo systemctl restart Ngrok.service
+
+sudo echo -e "[Unit]
+  Description=Ngrok_Monitor
+  After=Ngrok.service
+  [Service]
+  User=pi
+  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+  ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/ngrok.py
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >>   /etc/systemd/system/Ngrok_Monitor.service
+sudo systemctl enable Ngrok_Monitor.service
+sudo systemctl restart Ngrok_Monitor.service
