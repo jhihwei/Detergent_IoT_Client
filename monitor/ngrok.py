@@ -18,7 +18,6 @@ from Mqtt_Controller import Mqtt_Controller
 m = Mqtt_Controller()
 m.set_TOPIC('url')
 m.subscribe('ngrok')
-m.on_message(get_url(client, userdata, msg))
 
 def get_url(client, userdata, msg):
     while True:
@@ -33,3 +32,5 @@ def get_url(client, userdata, msg):
                 print(tunnel)
         except:
             print("keep move")
+            
+m.on_message(get_url(client, userdata, msg))
