@@ -22,7 +22,6 @@ while True:
             sleep(3)
             rs = f.readlines()
             for r in rs:
-                print(r)
                 r = r.replace('"', '')
                 if(r.index('tunnel') > 0):
                     tunnel = r
