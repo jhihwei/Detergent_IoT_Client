@@ -18,12 +18,12 @@ from Mqtt_Controller import Mqtt_Controller
 while True:
     try:
         with open('ngrok.log', 'r', encoding="utf-8") as f:
-            tunnel = ""
+            tunnel = "keep move"
             sleep(3)
             rs = f.readlines()
             for r in rs:
                 if(r.index("tunnel")):
                     tunnel = r
             print(tunnel)
-    except FileNotFoundError:
+    except:
         pass
