@@ -19,8 +19,9 @@ m = Mqtt_Controller()
 m.set_TOPIC('url')
 m.subscribe('ngrok')
 
-def get_url(client, userdata, msg):
-    while True:
+def get_url(client, userdata, message):
+    print("message received " ,str(message.payload.decode("utf-8")))
+    while False:
         try:
             with open('ngrok.log', 'r', encoding="utf-8") as f:
                 tunnel = "keep move"
@@ -34,3 +35,4 @@ def get_url(client, userdata, msg):
             print("keep move")
 
 m.mqtt_client.on_message=get_url
+m.mqtt_client.loop_forever
