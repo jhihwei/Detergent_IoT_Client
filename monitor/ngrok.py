@@ -17,8 +17,11 @@ from Mqtt_Controller import Mqtt_Controller
 from time import sleep
 
 while True:
-    with open('ngrok.log', 'r', encoding="utf-8") as f:
-        sleep(10)
-        rs = f.readlines()
-        for r in rs:
-            print(r)
+    try:
+        with open('ngrok.log', 'r', encoding="utf-8") as f:
+            sleep(10)
+            rs = f.readlines()
+            for r in rs:
+                print(r)
+    except FileNotFoundError:
+        pass
