@@ -22,8 +22,7 @@ while True:
             sleep(3)
             rs = f.readlines()
             for r in rs:
-                r = r.replace('"', '')
-                if(r.index('tunnel') > 0):
+                if(r.find('started tunnel') > 0):
                     tunnel = r
             print(tunnel)
     except:
