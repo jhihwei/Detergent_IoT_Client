@@ -23,7 +23,7 @@ while True:
             rs = f.readlines()
             for r in rs:
                 print(r)
-                if(r.index('tunnel"')):
+                if(r.index('tunnel"') > 0):
                     tunnel = r
             print(tunnel)
     except:
