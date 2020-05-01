@@ -15,6 +15,8 @@ sys.path.insert(0, libs_dir_path)
 from Mqtt_Controller import Mqtt_Controller
 # --------------------------------------
 
+m = Mqtt_Controller()
+m.set_TOPIC('ngrok')
 while True:
     try:
         with open('ngrok.log', 'r', encoding="utf-8") as f:

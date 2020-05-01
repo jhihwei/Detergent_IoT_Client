@@ -82,3 +82,8 @@ class Mqtt_Controller:
             # print(json.dumps(payload))
             self.mqtt_client.publish(
                 self.MQTT_TOPIC_1, json.dumps(payload), 0)
+    def subscribe(self, topic:str):
+        self.mqtt_client.subscribe(f'{topic}/{self.data_channel_ID}', 0)
+        
+    def on_message(self, func):
+        self.mqtt_client.on_message=func
