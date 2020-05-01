@@ -32,5 +32,5 @@ def get_url(client, userdata, msg):
                 print(tunnel)
         except:
             print("keep move")
-            
-m.on_message(get_url(client, userdata, msg))
+
+m.mqtt_client.on_message=get_url
