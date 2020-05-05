@@ -1,7 +1,7 @@
-sudo apt-get install -y libatlas-base-dev
-sudo apt-get install -y libjasper-dev
-sudo apt-get install -y libqtgui4
-sudo apt-get install -y python3-pyqt5
+sudo apt install -y libatlas-base-dev
+sudo apt install -y libjasper-dev
+sudo apt install -y libqtgui4
+sudo apt install -y python3-pyqt5
 sudo apt install -y libqt4-test
 sudo apt install -y python3-opencv
 sudo apt install -y libgstreamer1.0-0
