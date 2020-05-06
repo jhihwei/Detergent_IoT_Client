@@ -23,7 +23,7 @@ class Monitor:
         pass
 
     def take_screenshot(self):
-        subprocess.run(["raspi2png", "-w", "320"])
+        subprocess.run(["raspi2png", "-w", "240"])
         img = cv2.imread("snapshot.png")
         h, w, channels = img.shape
         # resize img and save it
@@ -31,7 +31,7 @@ class Monitor:
         h_ratio = h/ratio
         h = int(h/h_ratio)
         w = int(w/h_ratio)
-        img = cv2.resize(img, (w, h), interpolation=cv2.INTER_CUBIC)
+        # img = cv2.resize(img, (w, h), interpolation=cv2.INTER_CUBIC)
         cv2.imwrite('output.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 10])
 
     def convert_img_to_base64(self, image_path:str):

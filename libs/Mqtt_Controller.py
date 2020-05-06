@@ -44,7 +44,6 @@ class Mqtt_Controller:
 
     def mqtt_reconnect(self):
         while not self.flag_connected:
-            time.sleep(3)
             try:
                 print("Try to Connect...")
                 self.write_log('log/mqtt_connect_log.txt', '連線中斷並嘗試連線')
@@ -56,6 +55,7 @@ class Mqtt_Controller:
             except Exception as e:
                 self.flag_connected = False
                 self.write_log('log/mqtt_connect_except_log.txt', str(e))
+            time.sleep(15)
 
     def write_log(self, path:str, log:str):
         with open(f'{self.system_path}/{path}','a+', encoding='utf-8') as f:

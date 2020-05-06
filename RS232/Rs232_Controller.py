@@ -26,6 +26,14 @@ class Recevier():
             timeout=1
         )
         self.m = Mqtt_Controller()
+        self.m.subscribe('rs232')
+        self.m.mqtt_client.on_message = get_data
+        self.m.mqtt_client.loop_forever()
+
+    def get_data(client, userdata, message):
+        message = str(message.payload.decode("utf-8"))
+        print(message)
+
     def start(self):
         data = ''
         while 1:
