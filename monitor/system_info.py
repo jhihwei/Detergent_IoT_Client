@@ -9,6 +9,7 @@ sys.path.insert(0, libs_dir_path)
 # Dot ENV 預載模組-----------------------
 from struct import *
 from datetime import datetime
+from time import sleep
 from dotenv import load_dotenv
 load_dotenv()
 # --------------------------------------
