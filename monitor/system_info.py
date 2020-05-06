@@ -24,6 +24,6 @@ while True:
     mem = psutil.virtual_memory()
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
-    m.publish(now, f'{temp},{mem.free}/1024', "system_info")
+    m.publish(now, f'{temp},{mem.free/1024}', "system_info")
     print(cpu.temperature)
     sleep(15)
