@@ -1,4 +1,5 @@
 from gpiozero import CPUTemperature
+import psutil
 import sys
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -20,8 +21,9 @@ m = Mqtt_Controller()
 m.set_TOPIC("system_info")
 while True:
     temp = cpu.temperature
+    mem = psutil.virtual_memory()
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
-    m.publish(now, temp, "system_info")
+    m.publish(now, f'{temp},{mem.free}', "system_info")
     print(cpu.temperature)
     sleep(15)
