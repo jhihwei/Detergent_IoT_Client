@@ -20,8 +20,8 @@ m = Mqtt_Controller()
 m.set_TOPIC("system_info")
 while True:
     temp = cpu.temperature
-    sleep(15)
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
     self.m.publish(now, temp, "system_info")
     print(cpu.temperature)
+    sleep(15)
