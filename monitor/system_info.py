@@ -22,6 +22,6 @@ while True:
     temp = cpu.temperature
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
-    self.m.publish(now, temp, "system_info")
+    m.publish(now, temp, "system_info")
     print(cpu.temperature)
     sleep(15)
