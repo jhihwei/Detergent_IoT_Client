@@ -27,9 +27,9 @@ class Recevier():
         )
         self.m = Mqtt_Controller()
         self.m.subscribe('rs232')
-        self.m.mqtt_client.on_message = self.get_data
-        self.m.mqtt_client.loop_forever()
-        
+        # self.m.mqtt_client.on_message = self.get_data
+        # self.m.mqtt_client.loop_forever()
+
     def get_data(client, userdata, message):
         message = str(message.payload.decode("utf-8"))
         print(message)
