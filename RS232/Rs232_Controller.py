@@ -16,10 +16,6 @@ from Mqtt_Controller import Mqtt_Controller
 import time
 import serial
 class Recevier():
-    def get_data(client, userdata, message):
-        message = str(message.payload.decode("utf-8"))
-        print(message)
-        
     def __init__(self):
         self.ser = serial.Serial(
             port=str(os.getenv('SERIAL_PORT')),
@@ -31,8 +27,12 @@ class Recevier():
         )
         self.m = Mqtt_Controller()
         self.m.subscribe('rs232')
-        self.m.mqtt_client.on_message = get_data
+        self.m.mqtt_client.on_message = self.get_data
         self.m.mqtt_client.loop_forever()
+        
+    def get_data(client, userdata, message):
+        message = str(message.payload.decode("utf-8"))
+        print(message)
 
     def start(self):
         data = ''
