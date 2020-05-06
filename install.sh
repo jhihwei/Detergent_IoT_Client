@@ -103,3 +103,17 @@ sudo echo -e "[Unit]
   WantedBy=multi-user.target" >>   /etc/systemd/system/SSH_Tunnel.service
 sudo systemctl enable SSH_Tunnel.service
 sudo systemctl restart SSH_Tunnel.service
+
+sudo echo -e "[Unit]
+  Description=System Info
+  After=Ngrok.service
+  [Service]
+  User=pi
+  ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/system_info.py
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >>   /etc/systemd/system/system_info.service
+sudo systemctl enable system_info.service
+sudo systemctl restart system_info.service
