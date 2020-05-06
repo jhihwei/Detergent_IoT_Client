@@ -78,7 +78,7 @@ class Mqtt_Controller:
         print("flag:", self.flag_connected)
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg, 'func':func}
-            print(f'Received and Send:{datetime},{msg}')
+            print(f'{datetime},{msg}')
             # print(json.dumps(payload))
             self.mqtt_client.publish(
                 self.MQTT_TOPIC_1, json.dumps(payload), 0)

@@ -7,6 +7,7 @@ sudo apt install -y python3-opencv
 sudo apt install -y libgstreamer1.0-0
 sudo apt install -y --reinstall python3-pip
 sudo apt install -y autossh
+sudo apt install -y python3-rpi.gpio
 pip3 install --upgrade pip
 curl -sL https://raw.githubusercontent.com/AndrewFromMelbourne/raspi2png/master/installer.sh | bash -
 
