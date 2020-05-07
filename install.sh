@@ -10,7 +10,7 @@ sudo echo -e "[Unit]
     Restart=always
     RestartSec=1min
     [Install]
-    WantedBy=multi-user.target" >> /etc/systemd/system/player.service
+    WantedBy=multi-user.target" > /etc/systemd/system/player.service
 sudo systemctl enable player.service
 sudo systemctl restart player.service
 
@@ -23,7 +23,7 @@ sudo echo -e "[Unit]
     Restart=always
     RestartSec=1min
     [Install]
-    WantedBy=multi-user.target" >> /etc/systemd/system/RS232_Controller.service
+    WantedBy=multi-user.target" > /etc/systemd/system/RS232_Controller.service
 sudo systemctl enable RS232_Controller.service
 sudo systemctl restart RS232_Controller.service
 
@@ -37,22 +37,22 @@ sudo echo -e "[Unit]
   Restart=always
   RestartSec=1min
   [Install]
-  WantedBy=multi-user.target" >> /etc/systemd/system/Screen_Monitor.service
+  WantedBy=multi-user.target" > /etc/systemd/system/Screen_Monitor.service
 sudo systemctl enable Screen_Monitor.service
 sudo systemctl restart Screen_Monitor.service
 
-sudo echo -e "[Unit]
-  Description=Auto Key
-  [Service]
-  User=root
-  ExecStart=sudo /usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/keyboard.py
-  Type=simple
-  Restart=always
-  RestartSec=1min
-  [Install]
-  WantedBy=multi-user.target" >>   /etc/systemd/system/Auto_key.service
-sudo systemctl enable Auto_key.service
-sudo systemctl restart Auto_key.service
+# sudo echo -e "[Unit]
+#   Description=Auto Key
+#   [Service]
+#   User=root
+#   ExecStart=sudo /usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/keyboard.py
+#   Type=simple
+#   Restart=always
+#   RestartSec=1min
+#   [Install]
+#   WantedBy=multi-user.target" >   /etc/systemd/system/Auto_key.service
+# sudo systemctl enable Auto_key.service
+# sudo systemctl restart Auto_key.service
 
 sudo mkdir /opt/ngrok
 cd /opt/ngrok
@@ -71,7 +71,7 @@ chmod +x ngrok
 #   Restart=always
 #   RestartSec=1min
 #   [Install]
-#   WantedBy=multi-user.target" >>   /etc/systemd/system/Ngrok.service
+#   WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok.service
 # sudo systemctl enable Ngrok.service
 # sudo systemctl restart Ngrok.service
 
@@ -86,7 +86,7 @@ chmod +x ngrok
 #   Restart=always
 #   RestartSec=1min
 #   [Install]
-#   WantedBy=multi-user.target" >>   /etc/systemd/system/Ngrok_Monitor.service
+#   WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok_Monitor.service
 # sudo systemctl enable Ngrok_Monitor.service
 # sudo systemctl restart Ngrok_Monitor.service
 
@@ -100,7 +100,7 @@ sudo echo -e "[Unit]
   Restart=always
   RestartSec=1min
   [Install]
-  WantedBy=multi-user.target" >>   /etc/systemd/system/SSH_Tunnel.service
+  WantedBy=multi-user.target" >   /etc/systemd/system/SSH_Tunnel.service
 sudo systemctl enable SSH_Tunnel.service
 sudo systemctl restart SSH_Tunnel.service
 
@@ -114,6 +114,6 @@ sudo echo -e "[Unit]
   Restart=always
   RestartSec=1min
   [Install]
-  WantedBy=multi-user.target" >>   /etc/systemd/system/system_info.service
+  WantedBy=multi-user.target" >   /etc/systemd/system/system_info.service
 sudo systemctl enable system_info.service
 sudo systemctl restart system_info.service
