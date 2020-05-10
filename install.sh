@@ -1,6 +1,7 @@
 
 #!/bin/bash
 read -p "enter your ssh port:" "ssh_port"
+sudo echo 'gpu_mem=256' >>  /boot/config.txt
 sudo echo -e "[Unit]
     Description=Video Player
     [Service]

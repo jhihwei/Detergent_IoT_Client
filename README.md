@@ -24,4 +24,4 @@
 >每天1:10AM執行
 
 ### 設定GPU MEM 大小
- /boot/config.txt 加入 gpu_mem=128
+ /boot/config.txt 加入 gpu_mem=256
