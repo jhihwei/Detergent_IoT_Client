@@ -22,3 +22,6 @@
 10 1   *   *   *    /sbin/sysctl -w vm.drop_caches=1
 ```
 >每天1:10AM執行
+
+### 設定GPU MEM 大小
+ /boot/config.txt 加入 gpu_mem=128
