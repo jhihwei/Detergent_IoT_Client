@@ -54,12 +54,12 @@ sudo systemctl restart Screen_Monitor.service
 # sudo systemctl enable Auto_key.service
 # sudo systemctl restart Auto_key.service
 
-sudo mkdir /opt/ngrok
-cd /opt/ngrok
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-unzip ngrok-stable-linux-arm.zip
-rm ngrok-stable-linux-arm.zip
-chmod +x ngrok
+# sudo mkdir /opt/ngrok
+# cd /opt/ngrok
+# wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+# unzip ngrok-stable-linux-arm.zip
+# rm ngrok-stable-linux-arm.zip
+# chmod +x ngrok
 
 # sudo echo -e "[Unit]
 #   Description=Ngrok
