@@ -49,7 +49,7 @@ class Recevier():
                     recipt = f'{d[25]}{d[24]}{d[23]}{d[22]}{d[21]}'
                     if self.recipt == 0:
                         self.recipt = recipt
-                    if self.recipt == recipt:
+                    if self.recipt != recipt:
                         print(recipt)
                         self.recipt = recipt
 
