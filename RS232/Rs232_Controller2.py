@@ -15,6 +15,7 @@ load_dotenv()
 from Mqtt_Controller import Mqtt_Controller
 import time
 import serial
+import pip._vendor.requests._internal_utils
 class Recevier():
     def __init__(self):
         self.ser = serial.Serial(
@@ -30,6 +31,11 @@ class Recevier():
         self.recipt = 0
         # self.m.mqtt_client.on_message = self.get_data
         # self.m.mqtt_client.loop_forever()
+    
+    def line_notify(data):
+        payload = {'message':data}  
+        headers = {'Authorization': 'Bearer ' + 't9oN7y2sO0Jun7CIx3CZxOi9U3gVFAvqL7hb35nWrUo'} 
+        requests.post('https://notify-api.line.me/api/notify', data=payload, headers=headers)
 
     def get_data(client, userdata, message):
         message = str(message.payload.decode("utf-8"))
@@ -50,7 +56,7 @@ class Recevier():
                     if self.recipt == 0:
                         self.recipt = recipt
                     if self.recipt != recipt:
-                        print(recipt)
+                        line_notify(recipt)
                         self.recipt = recipt
 
                 self.m.publish(now, data)
