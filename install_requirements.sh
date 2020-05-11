@@ -12,6 +12,8 @@ sudo apt install -y autossh
 sudo apt install -y ntp
 sudo apt install -y fail2ban
 sudo apt install -y python3-rpi.gpio
+sudo apt install -y omxplayer
+
 pip3 install --upgrade pip
 curl -sL https://raw.githubusercontent.com/AndrewFromMelbourne/raspi2png/master/installer.sh | bash -
 
