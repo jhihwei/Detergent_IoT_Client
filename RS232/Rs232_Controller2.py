@@ -49,8 +49,8 @@ class Recevier():
             if ox == b'\xfa':
                 now = datetime.now()
                 now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                
                 d = data.split(',')
-
                 if len(d) > 10:
                     recipt = f'{d[25]}{d[24]}{d[23]}{d[22]}{d[21]}'
                     if self.recipt == 0:
