@@ -33,8 +33,8 @@ class Recevier():
         # self.m.mqtt_client.loop_forever()
     
     def line_notify(data):
-        payload = {'message':data}  
-        headers = {'Authorization': 'Bearer ' + 't9oN7y2sO0Jun7CIx3CZxOi9U3gVFAvqL7hb35nWrUo'} 
+        payload = {'message':f'光遠站發票存量：{data}'}  
+        headers = {'Authorization': 'Bearer ' + 'Urqc2WCRhwd0Dc3LvyzkyIJsjh4FzRoEvRc4DRE26YL'} 
         requests.post('https://notify-api.line.me/api/notify', data=payload, headers=headers)
 
     def get_data(client, userdata, message):
@@ -49,14 +49,14 @@ class Recevier():
             if ox == b'\xfa':
                 now = datetime.now()
                 now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                
+
                 d = data.split(',')
                 if len(d) > 10:
                     recipt = f'{d[25]}{d[24]}{d[23]}{d[22]}{d[21]}'
                     if self.recipt == 0:
                         self.recipt = recipt
                     if self.recipt != recipt:
-                        line_notify(recipt)
+                        line_notify(int(recipt))
                         self.recipt = recipt
 
                 self.m.publish(now, data)
