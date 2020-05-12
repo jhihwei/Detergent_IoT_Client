@@ -32,7 +32,7 @@ class Recevier():
         # self.m.mqtt_client.on_message = self.get_data
         # self.m.mqtt_client.loop_forever()
     
-    def line_notify(data):
+    def line_notify(self, data):
         payload = {'message':f'光遠站發票存量：{data}'}  
         headers = {'Authorization': 'Bearer ' + 'Urqc2WCRhwd0Dc3LvyzkyIJsjh4FzRoEvRc4DRE26YL'} 
         requests.post('https://notify-api.line.me/api/notify', data=payload, headers=headers)

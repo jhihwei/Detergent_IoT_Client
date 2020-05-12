@@ -25,3 +25,9 @@
 
 ### 設定GPU MEM 大小
  /boot/config.txt 加入 gpu_mem=256
+
+### 重啟各項服務
+```sh
+11 1   *   *   *    /bin/systemctl restart SSH_Tunnel.service
+0 1   *   *   *    /sbin/shutdown -r 0
+```
