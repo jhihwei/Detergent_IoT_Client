@@ -55,41 +55,41 @@ sudo systemctl restart Screen_Monitor.service
 # sudo systemctl enable Auto_key.service
 # sudo systemctl restart Auto_key.service
 
-# sudo mkdir /opt/ngrok
-# cd /opt/ngrok
-# wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-# unzip ngrok-stable-linux-arm.zip
-# rm ngrok-stable-linux-arm.zip
-# chmod +x ngrok
+sudo mkdir /opt/ngrok
+cd /opt/ngrok
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+unzip ngrok-stable-linux-arm.zip
+rm ngrok-stable-linux-arm.zip
+chmod +x ngrok
 
-# sudo echo -e "[Unit]
-#   Description=Ngrok
-#   [Service]
-#   User=root
-#   WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
-#   ExecStart=/opt/ngrok/ngrok tcp 22 --log ngrok.log
-#   Type=simple
-#   Restart=always
-#   RestartSec=1min
-#   [Install]
-#   WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok.service
-# sudo systemctl enable Ngrok.service
-# sudo systemctl restart Ngrok.service
+sudo echo -e "[Unit]
+  Description=Ngrok
+  [Service]
+  User=root
+  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+  ExecStart=/opt/ngrok/ngrok tcp 22 --log ngrok.log
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok.service
+sudo systemctl enable Ngrok.service
+sudo systemctl restart Ngrok.service
 
-# sudo echo -e "[Unit]
-#   Description=Ngrok_Monitor
-#   After=Ngrok.service
-#   [Service]
-#   User=pi
-#   WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
-#   ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/ngrok.py
-#   Type=simple
-#   Restart=always
-#   RestartSec=1min
-#   [Install]
-#   WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok_Monitor.service
-# sudo systemctl enable Ngrok_Monitor.service
-# sudo systemctl restart Ngrok_Monitor.service
+sudo echo -e "[Unit]
+  Description=Ngrok_Monitor
+  After=Ngrok.service
+  [Service]
+  User=pi
+  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
+  ExecStart=/usr/bin/python3 /home/pi/Detergent_IoT_Client/monitor/ngrok.py
+  Type=simple
+  Restart=always
+  RestartSec=1min
+  [Install]
+  WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok_Monitor.service
+sudo systemctl enable Ngrok_Monitor.service
+sudo systemctl restart Ngrok_Monitor.service
 
 sudo echo -e "[Unit]
   Description=AutoSSH Service
