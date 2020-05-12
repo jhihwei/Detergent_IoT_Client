@@ -66,7 +66,7 @@ sudo chmod 777 ngrok.log
 sudo echo -e "[Unit]
   Description=Ngrok
   [Service]
-  User=root
+  User=pido 
   WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
   ExecStart=/opt/ngrok/ngrok tcp 22 --log ngrok.log
   Type=simple
