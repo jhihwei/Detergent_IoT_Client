@@ -57,10 +57,11 @@ sudo systemctl restart Screen_Monitor.service
 
 sudo mkdir /opt/ngrok
 cd /opt/ngrok
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-unzip ngrok-stable-linux-arm.zip
-rm ngrok-stable-linux-arm.zip
-chmod +x ngrok
+sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+sudo unzip ngrok-stable-linux-arm.zip
+sudo rm ngrok-stable-linux-arm.zip
+sudo chmod +x ngrok
+sudo chmod 777 ngrok.log
 
 sudo echo -e "[Unit]
   Description=Ngrok
