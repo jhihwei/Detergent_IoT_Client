@@ -56,7 +56,7 @@ class Recevier():
                     if self.recipt == 0:
                         self.recipt = recipt
                     if self.recipt != recipt:
-                        self.line_notify(int(recipt))
+                        self.line_notify(int(recipt, 16))
                         self.recipt = recipt
 
                 self.m.publish(now, data)
