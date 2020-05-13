@@ -15,7 +15,7 @@ load_dotenv()
 from Mqtt_Controller import Mqtt_Controller
 import time
 import serial
-import pip._vendor.requests._internal_utils
+import requests
 class Recevier():
     def __init__(self):
         self.ser = serial.Serial(
