@@ -23,7 +23,7 @@ def get_url(client, userdata, message):
     message = str(message.payload.decode("utf-8"))
     if(message == "get"):         
         try:
-            with open('/home/pi/ngrok.log', 'r', encoding="utf-8") as f:
+            with open('/opt/ngrok/ngrok.log', 'r', encoding="utf-8") as f:
                 tunnel = "keep move"
                 sleep(3)
                 rs = f.readlines()

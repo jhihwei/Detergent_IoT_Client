@@ -64,14 +64,16 @@ sudo chmod +x ngrok
 sudo chmod 777 ngrok.log
 
 sudo echo -e "[Unit]
-  Description=Ngrok
+  Description=ngrok
+  After=network.target
   [Service]
-  User=pido 
-  WorkingDirectory=/home/pi/Detergent_IoT_Client/monitor/
-  ExecStart=/opt/ngrok/ngrok tcp 22 --log ngrok.log
-  Type=simple
+  ExecStart=/opt/ngrok/ngrok tcp 22 --log /opt/ngrok/ngrok.log
+  ExecReload=/bin/kill -HUP $MAINPID
+  KillMode=process
+  IgnoreSIGPIPE=true
   Restart=always
-  RestartSec=1min
+  RestartSec=3
+  Type=simple
   [Install]
   WantedBy=multi-user.target" >   /etc/systemd/system/Ngrok.service
 sudo systemctl enable Ngrok.service
