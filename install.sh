@@ -61,6 +61,7 @@ sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
 sudo unzip ngrok-stable-linux-arm.zip
 sudo rm ngrok-stable-linux-arm.zip
 sudo chmod +x ngrok
+sudo touch ngrok.log
 sudo chmod 777 ngrok.log
 
 sudo echo -e "[Unit]
