@@ -47,7 +47,7 @@ class Recevier():
             #     data = f'{x},'
             # else:
             #     data = data + f'{x},'
-            ox = self.ser.readline()
+            ox = self.ser.read()
             now = datetime.now()
             now = now.strftime("%m/%d/%Y,%H:%M:%S")
             print(ox)
