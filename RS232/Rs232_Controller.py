@@ -53,6 +53,8 @@ class Recevier():
                     self.m.publish(now, data)
                     data = ''
                     data = f'{x},'
+                else:
+                    print('checksum error.')
             else:
                 data = data + f'{x},'
 
