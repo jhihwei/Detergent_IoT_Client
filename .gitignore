@@ -1,0 +1,13 @@
+/.vscode/
+/.idea/
+/win-venv/
+/linux-venv/
+RS232/log/*.txt
+player/test_videos/*.mp4
+player/test_videos/*.mkv
+player/test_videos/*.avi
+player/log/*.txt
+.env
+.venv
+start_loop_log.txt
+mqtt_log.txt
