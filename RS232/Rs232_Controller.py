@@ -50,7 +50,7 @@ class Recevier():
             ox = self.ser.readline()
             now = datetime.now()
             now = now.strftime("%m/%d/%Y,%H:%M:%S")
-            self.m.publish(now, data)
+            self.m.publish(now, ox)
 
     def checksum(self, data):
         ans = 0
