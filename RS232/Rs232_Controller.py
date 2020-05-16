@@ -37,26 +37,23 @@ class Recevier():
     def start(self):
         data = ''
         while 1:
-            ox = self.ser.read()
-            x = ox.hex()
-            # with open('record.txt','a+') as fd:
-            if ox == b'\xfa':
-                d = data.split(',')
-                chksum = d[-2]
-                d = d[:-3]
-                if d == self.checksum(d):
-                    now = datetime.now()
-                    now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                    self.m.publish(now, data)
-                    data = ''
-                    # fd.write('\r\n')
-                    data = f'{x},'
-                    # fd.write(f'{now},{data}')
-            else:
-                data = data+f'{x},'
-                # fd.write(f'{x},')
-                
+            # ox = self.ser.read()
+            # x = ox.hex()
+            # if ox == b'\xfa':
+            #     now = datetime.now()
+            #     now = now.strftime("%m/%d/%Y,%H:%M:%S")
+            #     self.m.publish(now, data)
+            #     data = ''
+            #     data = f'{x},'
+            # else:
+            #     data = data + f'{x},'
+            ox = self.ser.readline()
+            now = datetime.now()
+            now = now.strftime("%m/%d/%Y,%H:%M:%S")
+            self.m.publish(now, data)
+
     def checksum(self, data):
+        ans = 0
         for i in data:
             ans += int(i, 16)
         ans = (ans ^ 0x55) & 0x7F
