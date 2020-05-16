@@ -1,3 +1,5 @@
+/.vscode/
+/.idea/
 /win-venv/
 /linux-venv/
 RS232/log/*.txt
