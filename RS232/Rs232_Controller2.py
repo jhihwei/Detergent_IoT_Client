@@ -52,11 +52,11 @@ class Recevier():
 
                 d = data.split(',')
                 if len(d) > 10:
-                    recipt = f'{d[25]}{d[24]}{d[23]}{d[22]}{d[21]}'
+                    recipt = f'{int(d[25], 16)}{int(d[24], 16)}{int(d[23], 16)}{int(d[22], 16)}{int(d[21], 16)}'
                     if self.recipt == 0:
                         self.recipt = recipt
                     if self.recipt != recipt:
-                        # self.line_notify(int(recipt, 16))
+                        self.line_notify(int(recipt))
                         self.recipt = recipt
 
                 self.m.publish(now, data)
