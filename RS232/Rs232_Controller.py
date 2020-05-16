@@ -46,7 +46,7 @@ class Recevier():
                     now = now.strftime("%m/%d/%Y,%H:%M:%S")
                     self.m.publish(now, data)
                     data = ''
-                    data = f'{x},'
+                data = f'{x},'
             else:
                 data = data + f'{x},'
 
