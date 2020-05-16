@@ -37,21 +37,16 @@ class Recevier():
     def start(self):
         data = ''
         while 1:
-            # ox = self.ser.read()
-            # x = ox.hex()
-            # if ox == b'\xfa':
-            #     now = datetime.now()
-            #     now = now.strftime("%m/%d/%Y,%H:%M:%S")
-            #     self.m.publish(now, data)
-            #     data = ''
-            #     data = f'{x},'
-            # else:
-            #     data = data + f'{x},'
             ox = self.ser.read()
-            now = datetime.now()
-            now = now.strftime("%m/%d/%Y,%H:%M:%S")
-            print(ox)
-            self.m.publish(now, ox)
+            x = ox.hex()
+            if ox == b'\xfa':
+                now = datetime.now()
+                now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                self.m.publish(now, data)
+                data = ''
+                data = f'{x},'
+            else:
+                data = data + f'{x},'
 
     def checksum(self, data):
         ans = 0
