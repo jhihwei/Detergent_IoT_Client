@@ -39,9 +39,12 @@ class Recevier():
         while 1:
             ox = self.ser.read()
             x = ox.hex()
+            # 完整的訊息含逗號，長度為84
             if ox == b'\xfa' and len(data) == 84:
                 d = data.split(',')
+                # 最後一個為[]，倒數第二個為chksum
                 chksum = d[-2]
+                # 由0至倒數第三個(不含第三個)為資料
                 d = d[:-3]
                 if chksum == self.checksum(d):
                     now = datetime.now()
