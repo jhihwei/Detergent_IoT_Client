@@ -40,7 +40,8 @@ class Recevier():
             ox = self.ser.read()
             x = ox.hex()
             if ox == b'\xfa':
-                if len(data) == 27:
+                d = data.spilt(',')
+                if len(d) == 28:
                     now = datetime.now()
                     now = now.strftime("%m/%d/%Y,%H:%M:%S")
                     self.m.publish(now, data)
