@@ -39,7 +39,7 @@ class Recevier():
         while 1:
             ox = self.ser.read()
             x = ox.hex()
-            if ox == b'\xfa' and len(data) == 54:
+            if ox == b'\xfa' and len(data) == 81:
                 now = datetime.now()
                 now = now.strftime("%m/%d/%Y,%H:%M:%S")
                 self.m.publish(now, data)
