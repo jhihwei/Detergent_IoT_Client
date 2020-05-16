@@ -40,11 +40,15 @@ class Recevier():
             ox = self.ser.read()
             x = ox.hex()
             if ox == b'\xfa' and len(data) == 84:
-                now = datetime.now()
-                now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                self.m.publish(now, data)
-                data = ''
-                data = f'{x},'
+                d = data.split(',')
+                chksum = d[-2]
+                d = d[:-3]
+                if chksum == self.checksum(d):
+                    now = datetime.now()
+                    now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                    self.m.publish(now, data)
+                    data = ''
+                    data = f'{x},'
             else:
                 data = data + f'{x},'
 
