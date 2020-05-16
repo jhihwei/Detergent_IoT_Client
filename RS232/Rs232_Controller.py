@@ -55,6 +55,7 @@ class Recevier():
             else:
                 data = data+f'{x},'
                 # fd.write(f'{x},')
+                
     def checksum(self, data):
         for i in data:
             ans += int(i, 16)
