@@ -46,7 +46,8 @@ class Recevier():
                 chksum = d[-2]
                 # 由0至倒數第三個(不含第三個)為資料
                 d = d[:-3]
-                if int(chksum, 16) == int(self.checksum(d), 16):
+                # if int(chksum, 16) == int(self.checksum(d), 16):
+                if True:
                     now = datetime.now()
                     now = now.strftime("%m/%d/%Y,%H:%M:%S")
                     self.m.publish(now, data)
