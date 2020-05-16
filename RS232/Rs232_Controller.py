@@ -41,16 +41,25 @@ class Recevier():
             x = ox.hex()
             # with open('record.txt','a+') as fd:
             if ox == b'\xfa':
-                now = datetime.now()
-                now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                self.m.publish(now, data)
-                data = ''
-                # fd.write('\r\n')
-                data = f'{x},'
-                # fd.write(f'{now},{data}')
+                d = data.split(',')
+                chksum = d[-2]
+                d = d[:-3]
+                if d == self.checksum(d):
+                    now = datetime.now()
+                    now = now.strftime("%m/%d/%Y,%H:%M:%S")
+                    self.m.publish(now, data)
+                    data = ''
+                    # fd.write('\r\n')
+                    data = f'{x},'
+                    # fd.write(f'{now},{data}')
             else:
                 data = data+f'{x},'
                 # fd.write(f'{x},')
+    def checksum(self, data):
+        for i in data:
+            ans += int(i, 16)
+        ans = (ans ^ 0x55) & 0x7F
+        return hex(ans).lstrip("0x")
 
 
 if __name__ == '__main__':
