@@ -39,10 +39,11 @@ class Recevier():
         while 1:
             ox = self.ser.read()
             x = ox.hex()
-            if ox == b'\xfa' and len(data) == 81:
+            if ox == b'\xfa':
                 now = datetime.now()
                 now = now.strftime("%m/%d/%Y,%H:%M:%S")
                 self.m.publish(now, data)
+                print(len(data))
                 data = ''
                 data = f'{x},'
             else:
