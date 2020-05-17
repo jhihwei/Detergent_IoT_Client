@@ -1,4 +1,5 @@
 import serial
+import os
 ser = serial.Serial(
             port=str(os.getenv('SERIAL_PORT')),
             baudrate=9600,
