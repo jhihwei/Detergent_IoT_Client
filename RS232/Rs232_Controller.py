@@ -58,6 +58,7 @@ class Recevier():
                     data = f'{x},'
                 else:
                     print('checksum error.')
+                    data = ''
             else:
                 data = data + f'{x},'
 
