@@ -16,4 +16,4 @@ ser = serial.Serial(
         )
 while True:
     x = ser.read()
-    print(x)
+    print(x.hex())
