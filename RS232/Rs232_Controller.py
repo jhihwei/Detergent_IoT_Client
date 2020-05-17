@@ -58,7 +58,7 @@ class Recevier():
                     data = f'{x},'
                 else:
                     print('checksum error.')
-                    data = 'fa'
+                    data = 'fa,'
             else:
                 data = data + f'{x},'
 
