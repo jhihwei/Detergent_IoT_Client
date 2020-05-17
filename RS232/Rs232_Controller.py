@@ -68,6 +68,7 @@ class Recevier():
             for i in data:
                 ans += int(i, 16)
                 ans = (ans ^ 0x55) & 0x7F
+            print(hex(ans))
             return hex(ans).lstrip("0x")
         except:
             #如果serial讀取有誤，回傳00
