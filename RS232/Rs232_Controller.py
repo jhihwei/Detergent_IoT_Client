@@ -1,10 +1,4 @@
 # 增加系統路徑---------------------------
-import serial
-import time
-from Mqtt_Controller import Mqtt_Controller
-from dotenv import load_dotenv
-from datetime import datetime
-from struct import *
 import sys
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -13,10 +7,14 @@ libs_dir_path = parent_dir_path+'/libs'
 sys.path.insert(0, libs_dir_path)
 # --------------------------------------
 # Dot ENV 預載模組-----------------------
+from struct import *
+from datetime import datetime
+from dotenv import load_dotenv
 load_dotenv()
 # --------------------------------------
-
-
+from Mqtt_Controller import Mqtt_Controller
+import time
+import serial
 class Recevier():
     def __init__(self):
         self.ser = serial.Serial(
@@ -52,7 +50,7 @@ class Recevier():
                 # 由0至倒數第三個(不含第三個)為資料
                 d = d[:-3]
                 if int(chksum, 16) == int(self.checksum(d), 16):
-                    # if True:
+                # if True:
                     now = datetime.now()
                     now = now.strftime("%m/%d/%Y,%H:%M:%S")
                     self.m.publish(now, data)
@@ -71,12 +69,12 @@ class Recevier():
             ans = (ans ^ 0x55) & 0x7F
         return hex(ans).lstrip("0x")
         # except:
-            # 如果serial讀取有誤，回傳00
-            #return '00'
+            #如果serial讀取有誤，回傳00
+            # return '00'
 
 
 if __name__ == '__main__':
-    if str(os.getenv('CLIENT_TYPE')) == 'local':
+    if str(os.getenv('CLIENT_TYPE')) == 'local' :
         r = Recevier()
         r.start()
     else:
