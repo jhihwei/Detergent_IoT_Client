@@ -14,6 +14,7 @@ ser = serial.Serial(
             bytesize=serial.EIGHTBITS,
             timeout=1
         )
-while True:
-    x = ser.read()
-    print(x.hex())
+# while True:
+#     x = ser.read()
+#     print(x.hex())
+ser.write(b'\xFC\x05\x54')
