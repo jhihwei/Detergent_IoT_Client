@@ -71,12 +71,6 @@ class Recevier():
             return hex(ans).lstrip("0x")
         except:
             return "xx"
-    # def checksum(self, data):
-    #     ans = 0
-    #     for i in data:
-    #         ans += int(i, 16)
-    #     ans = (ans ^ 0x55) & 0x7F
-    #     return hex(ans).lstrip("0x")
 
 
 if __name__ == '__main__':
