@@ -15,5 +15,5 @@ ser = serial.Serial(
             timeout=1
         )
 while True:
-    x = ser.read()
+    x = ser.readline()
     print(x.hex())
