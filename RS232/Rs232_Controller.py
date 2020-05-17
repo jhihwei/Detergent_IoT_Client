@@ -40,7 +40,7 @@ class Recevier():
             ox = self.ser.read()
             x = ox.hex()
             # 完整的訊息含逗號，長度為84
-            if ox == b'\xfa' and len(data) > 83:
+            if x == 'fa' and len(data) > 83:
                 print(data)
                 d = data.split(',')
                 # 最後一個為[]，倒數第二個為chksum，。如果serial讀取有誤chksum為xx
@@ -54,7 +54,7 @@ class Recevier():
                     now = datetime.now()
                     now = now.strftime("%m/%d/%Y,%H:%M:%S")
                     self.m.publish(now, data)
-                    data = ''
+                    # data = ''
                     data = f'{x},'
                 else:
                     print('checksum error.')
