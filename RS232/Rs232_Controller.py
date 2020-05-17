@@ -44,9 +44,7 @@ class Recevier():
                 print(data)
                 d = data.split(',')
                 # 最後一個為[]，倒數第二個為chksum，。如果serial讀取有誤chksum為xx
-                chksum = 'xx'
-                if len(d[-2]) > 0:
-                    chksum = d[-2]
+                chksum = d[-2] if d[-2] > 0 else 'xx'
                 # 由0至倒數第三個(不含第三個)為資料
                 d = d[:-3]
                 if int(chksum, 16) == int(self.checksum(d), 16):
@@ -60,6 +58,9 @@ class Recevier():
                     print('checksum error.')
                     data = 'fa,'
             else:
+                #如果serial讀取有誤，填入00
+                if len(x) < 1:
+                    x = '00'
                 data = data + f'{x},'
 
     # def checksum(self, data):
