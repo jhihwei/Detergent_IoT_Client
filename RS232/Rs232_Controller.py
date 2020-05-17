@@ -64,6 +64,7 @@ class Recevier():
 
     def checksum(self, data):
         ans = 0
+        print(data)
         try:
             for i in data:
                 ans += int(i, 16)
