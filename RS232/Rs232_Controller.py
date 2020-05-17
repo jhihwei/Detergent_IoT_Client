@@ -40,7 +40,7 @@ class Recevier():
             ox = self.ser.read()
             x = ox.hex()
             # 完整的訊息含逗號，長度為84
-            if ox == b'\xfa' and len(data) == 84:
+            if ox == b'\xfa' and len(data) > 83:
                 d = data.split(',')
                 # 最後一個為[]，倒數第二個為chksum
                 chksum = d[-2]
