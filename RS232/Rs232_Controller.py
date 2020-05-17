@@ -41,7 +41,6 @@ class Recevier():
             x = ox.hex()
             # 完整的訊息含逗號，長度為84
             if x == 'fa' and len(data) > 83:
-                print(data)
                 d = data.split(',')
                 # 最後一個為[]，倒數第二個為chksum，。如果serial讀取有誤chksum為xx
                 chksum = d[-2] if len(d[-2]) > 0 else 'xx'
@@ -63,24 +62,21 @@ class Recevier():
                     x = '00'
                 data = data + f'{x},'
 
-    # def checksum(self, data):
-    #     ans = 0
-    #     print(data)
-    #     try:
-    #         for i in data:
-    #             ans += int(i, 16)
-    #             ans = (ans ^ 0x55) & 0x7F
-    #         print(hex(ans))
-    #         return hex(ans).lstrip("0x")
-    #     except:
-    #         #如果serial讀取有誤，回傳00
-    #         return '00'
     def checksum(self, data):
         ans = 0
-        for i in data:
-            ans += int(i, 16)
-        ans = (ans ^ 0x55) & 0x7F
-        return hex(ans).lstrip("0x")
+        try:
+            for i in data:
+                ans += int(i, 16)
+            ans = (ans ^ 0x55) & 0x7F
+            return hex(ans).lstrip("0x")
+        except:
+            return "xx"
+    # def checksum(self, data):
+    #     ans = 0
+    #     for i in data:
+    #         ans += int(i, 16)
+    #     ans = (ans ^ 0x55) & 0x7F
+    #     return hex(ans).lstrip("0x")
 
 
 if __name__ == '__main__':
