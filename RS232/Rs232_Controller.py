@@ -62,18 +62,24 @@ class Recevier():
             else:
                 data = data + f'{x},'
 
+    # def checksum(self, data):
+    #     ans = 0
+    #     print(data)
+    #     try:
+    #         for i in data:
+    #             ans += int(i, 16)
+    #             ans = (ans ^ 0x55) & 0x7F
+    #         print(hex(ans))
+    #         return hex(ans).lstrip("0x")
+    #     except:
+    #         #如果serial讀取有誤，回傳00
+    #         return '00'
     def checksum(self, data):
         ans = 0
-        print(data)
-        try:
-            for i in data:
-                ans += int(i, 16)
-                ans = (ans ^ 0x55) & 0x7F
-            print(hex(ans))
-            return hex(ans).lstrip("0x")
-        except:
-            #如果serial讀取有誤，回傳00
-            return '00'
+        for i in data:
+            ans += int(i, 16)
+        ans = (ans ^ 0x55) & 0x7F
+        return hex(ans).lstrip("0x")
 
 
 if __name__ == '__main__':
