@@ -33,7 +33,7 @@
 12 1   *   *   *    /bin/systemctl restart player.service
 13 1   *   *   *    /bin/systemctl restart monitor.py
 13 1   *   *   *    /bin/echo "" > /opt/ngrok/ngrok.log
-14 1   *   *   *    /bin/systemctl restart Ngrok.service
+0 */2   *   *   *    /bin/systemctl restart Ngrok.service #每二小時
 15 1   *   *   *    /bin/systemctl restart Ngrok_Monitor.service
 16 1   *   *   *    /bin/systemctl restart system_info.service
 
