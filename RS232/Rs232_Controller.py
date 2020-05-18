@@ -53,12 +53,12 @@ class Recevier():
                         now = now.strftime("%m/%d/%Y,%H:%M:%S")
                         self.m.publish(now, data)
                         # data = ''
-                        data = f'{x},'
+                        data = 'fa,'
                     else:
                         print('checksum error.')
                         data = 'fa,'
                 except:
-                    pass
+                    data = 'fa,'
             else:
                 #如果serial讀取有誤，填入00
                 if len(x) < 1:
