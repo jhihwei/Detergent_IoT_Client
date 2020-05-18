@@ -42,8 +42,8 @@ class Recevier():
             # 完整的訊息含逗號，長度為84
             if x == 'fa' and len(data) > 83:
                 d = data.split(',')
-                # 最後一個為[]，倒數第二個為chksum，。如果serial讀取有誤chksum為xx
-                chksum = d[-2] if len(d[-2]) > 0 else 'xx'
+                # 最後一個為[]，倒數第二個為chksum，。如果serial讀取有誤chksum為ff
+                chksum = d[-2] if len(d[-2]) > 0 else 'ff'
                 # 由0至倒數第三個(不含第三個)為資料
                 d = d[:-3]
                 try:
