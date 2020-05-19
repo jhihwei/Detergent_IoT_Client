@@ -74,10 +74,10 @@ class Mqtt_Controller:
                 self.publish(now, f'sensor : {t0}')
             sleep(1)
 
-    def publish(self, datetime: str, msg: str, func = "sensor"):
+    def publish(self, datetime: str, msg: str, func = "sensor", terminal_id = self.data_channel_ID, is_write = 0):
         print("flag:", self.flag_connected)
         if self.flag_connected:
-            payload = {"time": datetime, 'value': msg, 'func':func}
+            payload = {"time": datetime, 'value': msg, 'func':func, 'terminal_id': terminal_id, 'is_write' : is_write}
             print(f'{datetime},{msg}')
             # print(json.dumps(payload))
             self.mqtt_client.publish(
