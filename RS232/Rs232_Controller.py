@@ -29,8 +29,8 @@ class Recevier():
         self.income = 0
         self.m = Mqtt_Controller()
         self.m.set_TOPIC_2('Sensor', 'write')
-        print(self.m.get_TOPIC_2)
-        print(self.m.get_TOPIC)
+        print(self.m.get_TOPIC_2())
+        print(self.m.get_TOPIC())
         # self.m.subscribe('rs232')
         # self.m.mqtt_client.on_message = self.get_data
         # self.m.mqtt_client.loop_forever()
@@ -62,11 +62,13 @@ class Recevier():
                         if self.check_income(income):
                             print('send write signal')
                             self.income = income
-                            self.m.publish('Sensor/detergent_client_002/write', now, data)
+                            # self.m.publish('Sensor/detergent_client_002/write', now, data)
+                            self.m.publish(self.m.get_TOPIC_2(), now, data)
+
                     else:
                         print('checksum error.')
                         data = 'fa,'
-                        
+
                     data = 'fa,'
 
                 except:
