@@ -62,7 +62,6 @@ class Recevier():
                         if self.check_income(income):
                             print('send write signal')
                             self.income = income
-                            # self.m.publish('Sensor/detergent_client_002/write', now, data)
                             self.m.publish(self.m.get_TOPIC_2(), now, data)
 
                     else:
