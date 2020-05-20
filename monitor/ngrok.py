@@ -32,7 +32,7 @@ def get_url(client, userdata, message):
                         tunnel = r
                 now = datetime.now()
                 now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                m.publish(now, tunnel, "get device url")
+                m.publish(self.m.get_TOPIC(), now, tunnel, "get device url")
         except:
             print("keep move")
 

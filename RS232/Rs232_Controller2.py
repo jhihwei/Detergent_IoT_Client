@@ -52,6 +52,7 @@ class Recevier():
 
                 d = data.split(',')
                 if len(d) > 10:
+                    # 還未補齊二位數
                     recipt = f'{int(d[25], 16)}{int(d[24], 16)}{int(d[23], 16)}{int(d[22], 16)}{int(d[21], 16)}'
                     if self.recipt == 0:
                         self.recipt = recipt

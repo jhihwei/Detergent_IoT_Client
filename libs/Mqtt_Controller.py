@@ -19,6 +19,7 @@ class Mqtt_Controller:
         self.MQTT_PORT = 1883
         self.MQTT_ALIVE = 60
         self.MQTT_TOPIC_1 = f"Sensor/{self.data_channel_ID}/Room1"
+        self.MQTT_TOPIC_2 = f"Sensor/{self.data_channel_ID}/write"
         # *********************************************************************
         self.mqtt_client = mqtt.Client(
             f'{self.data_channel_ID}_{random.randint(1, 1000)}', clean_session=False)
@@ -34,8 +35,14 @@ class Mqtt_Controller:
     def set_TOPIC(self, topic:str):
         self.MQTT_TOPIC_1 = f'{topic}/{self.data_channel_ID}'
 
+    def set_TOPIC_2(self, topic:str, action:str):
+        self.MQTT_TOPIC_2 = f'{topic}/{self.data_channel_ID}/{action}'
+
     def get_TOPIC(self):
         return self.MQTT_TOPIC_1
+
+    def get_TOPIC_2(self):
+        return self.MQTT_TOPIC_2
 
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False
@@ -62,6 +69,7 @@ class Mqtt_Controller:
             now = datetime.now()
             now = now.strftime("%m/%d/%Y,%H:%M:%S")
             f.write(f'{now}:{log}\n')
+
     def start_loop(self):
         print('Start Loop...')
         while True:
@@ -74,14 +82,14 @@ class Mqtt_Controller:
                 self.publish(now, f'sensor : {t0}')
             sleep(1)
 
-    def publish(self, datetime: str, msg: str, func = "sensor", terminal_id: str = str(os.getenv('CLIENT_ID')), is_write = 0):
+    def publish(self, topic:str, datetime: str, msg: str, func = "sensor", terminal_id: str = str(os.getenv('CLIENT_ID')), is_write = 0):
         print("flag:", self.flag_connected)
         if self.flag_connected:
             payload = {"time": datetime, 'value': msg, 'func':func, 'terminal_id': terminal_id, 'is_write' : is_write}
             print(f'{datetime},{msg}')
-            # print(json.dumps(payload))
             self.mqtt_client.publish(
-                self.MQTT_TOPIC_1, json.dumps(payload), 0)
+                topic, json.dumps(payload), 0)
+                
     def subscribe(self, topic:str):
         self.mqtt_client.subscribe(f'{topic}/{self.data_channel_ID}', 0)
         

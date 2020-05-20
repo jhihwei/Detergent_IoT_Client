@@ -15,6 +15,7 @@ load_dotenv()
 from Mqtt_Controller import Mqtt_Controller
 import time
 import serial
+from Data_Format import Data_Format
 class Recevier():
     def __init__(self):
         self.ser = serial.Serial(
@@ -25,8 +26,10 @@ class Recevier():
             bytesize=serial.EIGHTBITS,
             timeout=1
         )
+        self.income = 0
         self.m = Mqtt_Controller()
-        self.m.subscribe('rs232')
+        self.m.SET_TOPIC_2('Sensor', 'write')
+        # self.m.subscribe('rs232')
         # self.m.mqtt_client.on_message = self.get_data
         # self.m.mqtt_client.loop_forever()
 
@@ -51,7 +54,7 @@ class Recevier():
                     # if True:
                         now = datetime.now()
                         now = now.strftime("%m/%d/%Y,%H:%M:%S")
-                        self.m.publish(now, data)
+                        self.m.publish(self.m.get_TOPIC(), now, data)
                         # data = ''
                         data = 'fa,'
                     else:
