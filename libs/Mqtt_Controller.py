@@ -39,10 +39,10 @@ class Mqtt_Controller:
         self.MQTT_TOPIC_2 = f'{topic}/{self.data_channel_ID}/{action}'
 
     def get_TOPIC(self):
-        return self.MQTT_TOPIC_1
+        return str(self.MQTT_TOPIC_1)
 
     def get_TOPIC_2(self):
-        return self.MQTT_TOPIC_2
+        return str(self.MQTT_TOPIC_2)
 
     def on_disconnect(self, client, userdata, rc):
         self.flag_connected = False
