@@ -21,7 +21,7 @@ m = Mqtt_Controller()
 m.set_TOPIC("system_info")
 m.set_TOPIC_2("system_info","write")
 sleep_time = 5
-count = 0
+count = 60
 while True:
     temp = cpu.temperature
     mem = psutil.virtual_memory()
