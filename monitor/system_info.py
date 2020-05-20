@@ -19,10 +19,18 @@ from Mqtt_Controller import Mqtt_Controller
 cpu = CPUTemperature()
 m = Mqtt_Controller()
 m.set_TOPIC("system_info")
+m.set_TOPIC_2("system_info","write")
+sleep_time = 5
+count = 0
 while True:
     temp = cpu.temperature
     mem = psutil.virtual_memory()
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
     m.publish(m.get_TOPIC(), now, f'{temp},{mem.free/1024/1024}', "system_info")
-    sleep(15)
+    if count > 120/sleep_time:
+        m.publish(m.get_TOPIC_2(), now, f'{temp},{mem.free/1024/1024}', "system_info")
+        count = 0
+    else:
+        count+=1
+    sleep(sleep_time)

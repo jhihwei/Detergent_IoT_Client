@@ -68,7 +68,7 @@ sudo echo -e "[Unit]
   Description=ngrok
   After=network.target
   [Service]
-  ExecStart=/opt/ngrok/ngrok tcp 22 --log /opt/ngrok/ngrok.log
+  ExecStart=/opt/ngrok/ngrok tcp 22 --log /opt/ngrok/ngrok.log --config /home/pi/.ngrok2/ngrok.yml
   ExecReload=/bin/kill -HUP $MAINPID
   KillMode=process
   IgnoreSIGPIPE=true
