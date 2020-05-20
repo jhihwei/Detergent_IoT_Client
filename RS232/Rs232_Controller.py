@@ -39,6 +39,7 @@ class Recevier():
 
     def start(self):
         data = ''
+        d_format = Data_Format()
         while 1:
             ox = self.ser.read()
             x = ox.hex()
@@ -51,12 +52,13 @@ class Recevier():
                 d = d[:-3]
                 try:
                     if int(chksum, 16) == int(self.checksum(d), 16):
-                    # if True:
+                        _,_,_,income,_ = d_format.extract_data(d)
                         now = datetime.now()
                         now = now.strftime("%m/%d/%Y,%H:%M:%S")
                         self.m.publish(self.m.get_TOPIC(), now, data)
-                        # data = ''
                         data = 'fa,'
+                        if self.check_income(income):
+                            self.m.publish(self.m.get_TOPIC_2, now, data)
                     else:
                         print('checksum error.')
                         data = 'fa,'
@@ -67,6 +69,12 @@ class Recevier():
                 if len(x) < 1:
                     x = '00'
                 data = data + f'{x},'
+
+    def check_income(self, income):
+        if self.income == income:
+            return False
+        else:
+            return True
 
     def checksum(self, data):
         ans = 0
