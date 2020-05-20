@@ -58,7 +58,6 @@ class Recevier():
                         now = datetime.now()
                         now = now.strftime("%m/%d/%Y,%H:%M:%S")
                         self.m.publish(self.m.get_TOPIC(), now, data)
-                        data = 'fa,'
 
                         if self.check_income(income):
                             print('send write signal')
@@ -67,6 +66,9 @@ class Recevier():
                     else:
                         print('checksum error.')
                         data = 'fa,'
+                        
+                    data = 'fa,'
+
                 except:
                     data = 'fa,'
             else:
