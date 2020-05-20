@@ -58,6 +58,7 @@ class Recevier():
                         self.m.publish(self.m.get_TOPIC(), now, data)
                         data = 'fa,'
                         if self.check_income(income):
+                            self.income = income
                             self.m.publish(self.m.get_TOPIC_2, now, data)
                     else:
                         print('checksum error.')
