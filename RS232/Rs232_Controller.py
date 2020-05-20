@@ -57,8 +57,9 @@ class Recevier():
                         now = now.strftime("%m/%d/%Y,%H:%M:%S")
                         self.m.publish(self.m.get_TOPIC(), now, data)
                         data = 'fa,'
-                        print(self.check_income(income), income)
+
                         if self.check_income(income):
+                            print('send write signal')
                             self.income = income
                             self.m.publish(self.m.get_TOPIC_2, now, data)
                     else:
