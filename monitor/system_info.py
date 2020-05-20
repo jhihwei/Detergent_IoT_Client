@@ -29,10 +29,10 @@ while True:
     hdd = psutil.disk_usage('/').free / (2**30)
     now = datetime.now()
     now = now.strftime("%m/%d/%Y,%H:%M:%S")
-    m.publish(m.get_TOPIC(), now, f'{temp},{mem.free/1024/1024}', "system_info")
+    m.publish(m.get_TOPIC(), now, f'{temp}, {mem.free/1024/1024}, {cpu_load}, {hdd}', "system_info")
     if count > 120/sleep_time:
         print("send write signal")
-        m.publish(m.get_TOPIC_2(), now, f'{temp}, {cpu_load}, {hdd},{mem.free/1024/1024}', "system_info")
+        m.publish(m.get_TOPIC_2(), now, f'{temp}, {mem.free/1024/1024}, {cpu_load}, {hdd}', "system_info")
         count = 0
     else:
         count+=1
