@@ -33,8 +33,8 @@ def get_url(client, userdata, message):
                 now = datetime.now()
                 now = now.strftime("%m/%d/%Y,%H:%M:%S")
                 m.publish(self.m.get_TOPIC(), now, tunnel, "get device url")
-        except:
-            print("keep move")
+        except Exception as e:
+            print(e)
 
 m.mqtt_client.on_message = get_url
 m.mqtt_client.loop_forever()
