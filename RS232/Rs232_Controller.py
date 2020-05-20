@@ -57,7 +57,7 @@ class Recevier():
                         now = now.strftime("%m/%d/%Y,%H:%M:%S")
                         self.m.publish(self.m.get_TOPIC(), now, data)
                         data = 'fa,'
-                        print(self.check_income(income))
+
                         if self.check_income(income):
                             self.income = income
                             self.m.publish(self.m.get_TOPIC_2, now, data)
@@ -73,10 +73,10 @@ class Recevier():
                 data = data + f'{x},'
 
     def check_income(self, income):
-        if self.income == income:
-            return False
-        else:
+        if self.income != income:
             return True
+        else:
+            return False
 
     def checksum(self, data):
         ans = 0
