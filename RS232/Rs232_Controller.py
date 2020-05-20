@@ -28,7 +28,7 @@ class Recevier():
         )
         self.income = 0
         self.m = Mqtt_Controller()
-        self.m.SET_TOPIC_2('Sensor', 'write')
+        self.m.set_TOPIC_2('Sensor', 'write')
         # self.m.subscribe('rs232')
         # self.m.mqtt_client.on_message = self.get_data
         # self.m.mqtt_client.loop_forever()
