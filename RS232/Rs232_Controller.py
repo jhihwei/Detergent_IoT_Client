@@ -63,7 +63,7 @@ class Recevier():
                         if self.check_income(income):
                             print('send write signal')
                             self.income = income
-                            self.m.publish('Sensor/detergent_Client_002', now, data)
+                            self.m.publish('Sensor/detergent_client_002/write', now, data)
                     else:
                         print('checksum error.')
                         data = 'fa,'
